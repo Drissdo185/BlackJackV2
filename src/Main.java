@@ -6,7 +6,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        Game blackjack = new Game();
+        Login blackjack = new Login();
         frame.setSize(800, 600);
 
         frame.add(blackjack);
