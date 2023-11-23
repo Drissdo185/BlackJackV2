@@ -65,7 +65,7 @@ public class Login extends JPanel {
         // Add title to the panel
         title = new JLabel("Black Jack IU");
         title.setBounds(300, 100, 200, 50);
-        title.setFont(new Font("Arial", Font.BOLD, 30));
+        title.setFont(new Font("Arial", Font.BOLD, 25));
         title.setForeground(Color.BLACK);
 
 
@@ -89,7 +89,7 @@ public class Login extends JPanel {
                 String password = new String(passwordField.getPassword());
 
                 // Check if the login is successful
-                if (checkLogin(username, password)) {
+                if (/*checkLogin(username, password)*/true) {
                     // Transition to the game menu (You can open a new frame or panel here)
                     new openGameMenu();
                     // Close the current frame
@@ -109,7 +109,7 @@ public class Login extends JPanel {
 
 
 
-    private boolean checkLogin(String username, String password){
+    /*private boolean checkLogin(String username, String password){
         // Perform the database authentication here
         String dbUrl = "jdbc:mysql://localhost:3300/blackjack";
         String dbUser = "root";
@@ -131,7 +131,7 @@ public class Login extends JPanel {
         }
 
         return false; // Return false if an error occurs or if no matching user is found.
-    }
+    }*/
     }
 
 

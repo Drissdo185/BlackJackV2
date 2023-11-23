@@ -8,20 +8,18 @@ public class openGameMenu extends JFrame{
     }
 
     public void openGameMenu() {
-        setTitle("Black Jack Game");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Create and set up the window.
+        JFrame frame = new JFrame("Black Jack Game");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 500);
+        
 
-        // Create a panel
-        JPanel gameMenu = new JPanel();
-        // Add text to the panel
-        text = new JLabel("Welcome to Black Jack IU");
-
-        // Add the panel to the frame
-        add(gameMenu);
-
+        
+        //Create gameMenu
+        Game gameMenu = new Game();
+        this.setLocationRelativeTo(null);
+        this.add(gameMenu);
         this.setVisible(true);
-
-
+        
     }
 }
