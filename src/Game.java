@@ -21,6 +21,17 @@ public class Game extends JPanel{
 
     private JButton btnHit, btnStand, btnNext, btnPlay, btnExit, btnRule;
 
+    private int W, L, pushes;
+
+    private double balance;
+
+    private Deck deck, discarded;
+
+    private Dealer dealer;
+
+    private Player player;
+
+
     public Game(){
         setupGame();
     }
@@ -88,9 +99,53 @@ public class Game extends JPanel{
                 SwingUtilities.getWindowAncestor(Game.this).dispose();
                 
             }
-                
-
 
 
         });
-    }}
+        btnPlay.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JFrame gamePlay = new JFrame("More Play More Win");
+                gamePlay.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+                //Turn off current window
+                SwingUtilities.getWindowAncestor(Game.this).dispose();
+
+                //Create gamePlay
+
+
+                gamePlay.setSize(800, 500);
+
+
+                //Add elements to the panel
+
+
+
+                gamePlay.setVisible(true);
+
+
+
+
+
+
+            
+            
+            
+            
+            }
+
+            });
+
+
+    }
+
+    public void startRound(){
+            if (W > 0 || L > 0 || pushes > 0) {
+                System.out.println();
+                System.out.println("Starting Next Round... Wins: " + W + " Losses: " + L + " Pushes: " + pushes);
+                dealer.getHand().discardHandToDeck(discarded);
+                player.getHand().discardHandToDeck(discarded);
+            }
+        }
+
+}
