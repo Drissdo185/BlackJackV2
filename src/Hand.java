@@ -11,8 +11,16 @@ public class Hand {
         hand = new ArrayList<Card>();
     }
 
-    public void takeCard(Card card) {
-        hand.add(card);
+    public void takeCardFromDeck(Deck deck){
+        hand.add(deck.draw());
+        
+  }
+    // co tac dung la lay bai tu deck roi add vao hand
+    public void discardedHand(Deck discard){
+
+        discard.addCards(hand);
+
+        hand.clear();
     }
 }
 

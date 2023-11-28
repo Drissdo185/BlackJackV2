@@ -20,6 +20,8 @@ public class Game extends JPanel{
     private static int y = 0;
 
     private JButton btnHit, btnStand, btnNext, btnPlay, btnExit, btnRule;
+    private JLabel lblScore, lblPlayerHandVal, lblDealerHandVal, lblGameMessage, lblWallpaper;
+    private JLabel[] lblDealerCards, lblPlayerCards;
 
     private int W, L, pushes;
 
@@ -143,9 +145,32 @@ public class Game extends JPanel{
             if (W > 0 || L > 0 || pushes > 0) {
                 System.out.println();
                 System.out.println("Starting Next Round... Wins: " + W + " Losses: " + L + " Pushes: " + pushes);
-                dealer.getHand().discardHandToDeck(discarded);
-                player.getHand().discardHandToDeck(discarded);
+                dealer.getHand().discardedHand(discarded);
+                player.getHand().discardedHand(discarded);
             }
+
+            if (deck.cardsLeft() < 4) {
+                deck.reloadDeckFromDiscard(discarded);
+            }
+    
+            // Give the dealer two cards
+            dealer.getHand().takeCardFromDeck(deck);
+            dealer.getHand().takeCardFromDeck(deck);
+    
+            // Give the player two cards
+            player.getHand().takeCardFromDeck(deck);
+            player.getHand().takeCardFromDeck(deck);
+            
         }
+
+    public void updateScreen(){
+        lblPlayerHandVal.setText("Player's Hand Value: " + player.getHand().calculatedValue());
+        player.showHand(lblPlayerCards);
+        // score
+        lblScore.setText("[Wins: " + W + "]   [Losses: " + L + "]   [Pushes: " + pushes + "]   " );
+
+    }
+
+
 
 }
