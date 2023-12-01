@@ -107,14 +107,21 @@ public class Game {
                         return getSumwAce(hand);
                     } else {
                         for (int i = 0; i < aceCountInHand(hand); i++) {
-                            int sumOfHand = getSumwAce(hand);
-                            -(i + 1) * 10;
+                            int sumOfHand = getSumwAce(hand) - (i + 1) * 10;
                             if (sumOfHand <= 21) {
                                 return sumOfHand;
                             }
                         }
                     }
+                } else {
+                    int sumOfHand = 0;
+                    for (int i = 0; i < hand.size(); i++) {
+                        sumOfHand += hand.get(i).getValue();
+                    }
+                    return sumOfHand;
+
                 }
+                return 22;
             }
             public boolean hasAce (ArrayList < Card > hand) {
                 for (int i = 0; i < hand.size(); i++) {
@@ -126,7 +133,36 @@ public class Game {
 
             }
 
+            public static void rest(){
+                try{
+                    Thread.sleep(500);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
 
-        }}
+            public int getSumwAce(ArrayList<Card> hand){
+                int sumOfHand = 0;
+                for(int i = 0; i < hand.size(); i++){
+                    sumOfHand += hand.get(i).getValue();
+                }
+                return sumOfHand;
+            }
+
+            public int aceCountInHand(ArrayList<Card> hand){
+                int aceCount = 0;
+                for(int i = 0; i < hand.size(); i++){
+                    if(hand.get(i).getValue() == 11){
+                        aceCount++;
+                    }
+                }
+                return aceCount;
+
+            }
+
+
+
+
+        }
 
 
