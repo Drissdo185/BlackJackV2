@@ -12,11 +12,11 @@ public class Card {
     private int xPostion;
     private int yPostion;
 
-    // default constructor
+    // default constructor.
     public Card(){
-        suit=0;
-        rank=0;
-        value=0;
+        suit = 0;
+        rank = 0;
+        value  =0;
     }
 
     
@@ -38,31 +38,34 @@ public class Card {
     }
 
 
-    //show picture of card
-    // dealerTurn: check co phai toi luot của nha cai khongo
-    // faceDown: check la bai up hay lat
+    /* show picture of card.
+    * dealerTurn: check dealer's turn.
+    * faceDown: check cards are faceup or facedown.
+    */
 
     public void printCard(Graphics2D g2, boolean dealerTurn, boolean faceDown, int cardNumber)
             throws IOException {
 
 
-        BufferedImage deckImg = ImageIO.read(new File("images/cardSpriteSheet.png")); // doc anh tu file
+        BufferedImage deckImg = ImageIO.read(new File("images/cardSpriteSheet.png")); // read image from file.
 
 
-        int imgWidth = 950; //this is the width of the sprite sheet image in pixels.
-        int imgHeight = 392; //this is the height of the sprite sheet image in pixels.
+        int imgWidth = 950; // width of sprite sheet image in pixels.
+        int imgHeight = 392; // height of sprite sheet image in pixels.
 
 
         BufferedImage[][] cardPictures = new BufferedImage[4][13];
         BufferedImage backOfACard = ImageIO.read(new File("images/backsideOfACard.jpg"));
 
-        /* 4 la cơ, rô, chuồn, bích
-         * 13 la 2,3,4,5,6,7,8,9,10,J,Q,K,A
+        /* number "4" represents the Spade, Diamond, Club, and Heart.
+         * number "13" means Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen and King.
          */
         for (int c =0; c <4; c++){
             for(int r =0; r<13; r++){
-               cardPictures[c][r] = deckImg.getSubimage(r*imgWidth/13, c*imgHeight/4, imgWidth/13, imgHeight/4);
-        }
+               cardPictures[c][r] = deckImg.getSubimage(r*imgWidth/13, c*imgHeight/4, imgWidth/13, imgHeight/4); 
+                // assign relative card pictures to 2-D array.
+              }
+            }
         }
         if(dealerTurn){
             yPostion = 75;
