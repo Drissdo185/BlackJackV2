@@ -54,6 +54,8 @@ public class Card {
 
 
         BufferedImage[][] cardPictures = new BufferedImage[4][13];
+        BufferedImage backOfACard = ImageIO.read(new File("images/backsideOfACard.jpg"));
+
         /* 4 la cơ, rô, chuồn, bích
          * 13 la 2,3,4,5,6,7,8,9,10,J,Q,K,A
          */
