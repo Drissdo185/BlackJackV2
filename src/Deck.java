@@ -6,36 +6,33 @@ public class Deck {
 
     private ArrayList<Card> deck;
 
-    
     public Deck(){
         deck = new ArrayList<Card>();
-        for (int m = 0; m < 4; m++) {
-            for (int n = 0; n < 13; n++) {
-                if (n == 0) {
-                    Card card = new Card(m, n, 11); // number "11" represents Ace
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 13; j++){
+                if(j==0){
+                    Card card = new Card(i,j,11); //11 la ace
                     deck.add(card);
                 }
-                else if (n >= 10) {
-                    Card card = new Card(m, n, 10); // number "10" means Jack, Queen and King
+                else if(j >= 10){
+                    Card card = new Card(i,j, 10); // 10 la JQK
                     deck.add(card);
-                } else{
-                    Card card = new Card(m, n, n + 1);
+                }else{
+                    Card card = new Card(i,j,j+1);
                     deck.add(card);
                 }
             }
         }
     }
 
-    
-        // shuffle deck
+        // xao bai
         public void shuffleDeck() {
             Collections.shuffle(deck);
         }
-        public Card getCard(int i) {
+        public Card getCard(int i){
             return deck.get(i);
         }
-        public Card removeCard(int i) {
+        public Card removeCard(int i){
             return deck.remove(i);
         }
     }
-
