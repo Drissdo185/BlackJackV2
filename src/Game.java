@@ -3,14 +3,12 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.Font;
 import java.io.FileInputStream;
-
 import java.io.*;
 
 public class Game {
 
     ArrayList<Card> dealerHand;
     ArrayList<Card> playerHand;
-
     public boolean faceDown;
     public boolean dealerWon;
     public volatile boolean roundOver;
@@ -161,8 +159,8 @@ public class Game {
                 roundOver = true;
             }
         }
-        else { //else condition checks if it is dealer's hand.
-            if(getSumOfHand(hand) == 21) { //we basically look for the same things we looked for the player's hand.
+        else { 
+            if(getSumOfHand(hand) == 21) { 
                 faceDown = false;
                 JOptionPane.showMessageDialog(frame, "DEALER HAS DONE BLACKJACK! DEALER HAS WON!");
                 rest();
@@ -178,19 +176,19 @@ public class Game {
         }
     }
 
-    public void addCard(ArrayList<Card> hand) {//this method adds a card to the hand.
-        hand.add(deck.getCard(0)); //gets a card from the deck to the hand.
-        deck.removeCard(0); //removes the card from the deck.
+    public void addCard(ArrayList<Card> hand) {
+        hand.add(deck.getCard(0)); 
+        deck.removeCard(0); 
         faceDown = true;
     }
 
-    public boolean hasAceInHand(ArrayList<Card> hand) {//this method checks if the hand has ace.
-        for (int i = 0; i < hand.size(); i++){ //we go through the hand that is given as a parameter and check for a card with a value of 11(Ace.)
+    public boolean hasAceInHand(ArrayList<Card> hand) {
+        for (int i = 0; i < hand.size(); i++){ 
             if(hand.get(i).getValue() == 11) {
-                return true; //we return true if there is any.
+                return true; 
             }
         }
-        return false; //we return false if not.
+        return false; 
     }
 
     public int aceCountInHand(ArrayList<Card> hand){
@@ -208,7 +206,7 @@ public class Game {
         for (int i = 0; i < hand.size(); i++){
             handSum = handSum + hand.get(i).getValue();
         }
-        return handSum; //we return the integer.
+        return handSum; 
     }
 
     public int getSumOfHand (ArrayList<Card> hand) {
@@ -235,9 +233,9 @@ public class Game {
         return 22;
     }
 
-    public static void rest() {//this method sleeps the program. It basically serves as a time duration between events.
+    public static void rest() {
         try {
-            Thread.sleep(500);//this sleeps the program for 1000 miliseconds which is equal to 1 second.
+            Thread.sleep(500);
         }
         catch (InterruptedException e) {}
     }
