@@ -1,9 +1,9 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
+/*import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
+*/import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+//import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Tester {
@@ -22,7 +22,9 @@ public class Tester {
     public static JFrame menuFrame = new JFrame();
     public static JFrame gameFrame = new JFrame();
 
-    private static BufferedImage backgroundImage;
+    public static ImageIcon icon = new ImageIcon("images/icon.png");
+
+    //private static BufferedImage backgroundImage;
 
     private static int playerScore = 0;
     private static int dealerScore = 0;
@@ -39,6 +41,7 @@ public class Tester {
     public static STATE currentState = STATE.MENU; //the first state is the MENU state.
 
     public static void main(String[] args) throws InterruptedException {
+
         if(currentState == STATE.MENU) {
             openMenu();
         }
@@ -47,8 +50,8 @@ public class Tester {
     public static void openMenu() {
 
         
-        /*try{
-            Login.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/bgmenu.png")))));
+        try{
+            Login.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("images/backgroundMenu.png")))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,25 +123,14 @@ public class Tester {
                 menuFrame.add(beginningComponent);
                 menuFrame.setVisible(true);
             }
-        });*/
+        });
        
         
         
 
 
-        
-
-        menuFrame.setTitle("BLACKJACK!");
-        menuFrame.setSize(1130, 665);
-        menuFrame.setLocationRelativeTo(null);
-        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuFrame.setResizable(false);
-
-        OptionsComponent beginningComponent = new OptionsComponent();
-        menuFrame.add(beginningComponent);
-        menuFrame.setVisible(true);
+    
     }
-
     
 
 
@@ -167,6 +159,9 @@ public class Tester {
                         playerScore++;
                         currentBalance+= GameComponent.currentBet*2;
                     }
+                    
+                    gameFrame.setIconImage(icon.getImage());    
+
                     gameFrame.getContentPane().removeAll();
                     newGame = new Game(gameFrame);
                     newGame.formGame();
