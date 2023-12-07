@@ -59,6 +59,7 @@ public class OptionsComponent extends JComponent implements ActionListener{
         JButton selectedButton = (JButton)e.getSource();
 
         if(selectedButton == btnExit) {
+            playSE(".//restest//click.wav");
             System.exit(0);
         }
         else if(selectedButton == btnPlay) {
@@ -67,8 +68,10 @@ public class OptionsComponent extends JComponent implements ActionListener{
             Tester.gameRefreshThread.start();
             Tester.gameCheckThread.start();
             //playAmbienceMusic();
+            playSE(".//res//nutamthanh.wav");
         }
         else if(selectedButton == btnHelp) {
+            playSE(".//res//click.wav");
             JOptionPane.showMessageDialog(this, "The goal of blackjack is to beat the dealer's hand without going over 21." +
                             "\nFace cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand." +
                             "\nEach player starts with two cards, one of the dealer's cards is hidden until the end." +
@@ -79,10 +82,15 @@ public class OptionsComponent extends JComponent implements ActionListener{
                     JOptionPane.INFORMATION_MESSAGE);
         }
         else if(selectedButton == btnInfo) {
+            playSE(".//restest//click.wav");
             JOptionPane.showMessageDialog(this, "Product of Driss dep trai va nhung nguoi ban" +
                     "\n:>>>>>>>>", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
+        public void playSE(String Sound) {
 
+            SE.setFile(Sound);
+            SE.play();
+        }
 }
