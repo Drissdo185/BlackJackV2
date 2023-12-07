@@ -37,7 +37,7 @@ public class Game {
     }
 
     public void formGame() {
-
+        playSE(".//res//raw.wav");
         System.out.println("GAME FORMED");
         frame.setTitle("BLACKJACK!");
         frame.setSize(1130, 665);
@@ -127,6 +127,7 @@ public class Game {
                 }
                 if ((getSumOfHand(dealerHand)<21) && getSumOfHand(playerHand)<21) {
                     if(getSumOfHand(playerHand) > getSumOfHand(dealerHand)) {
+                        playSE(".//res//win.wav");    
                         faceDown = false;
                         dealerWon = false;
                         JOptionPane.showMessageDialog(frame, "PLAYER HAS WON BECAUSE OF A BETTER HAND!");
@@ -134,6 +135,7 @@ public class Game {
                         roundOver = true;
                     }
                     else {
+                        playSE(".//res//loses.wav");
                         faceDown = false;
                         JOptionPane.showMessageDialog(frame, "DEALER HAS WON BECAUSE OF A BETTER HAND!");
                         rest();
@@ -147,6 +149,7 @@ public class Game {
     public void checkHand (ArrayList<Card> hand) {//this method literally checks the hand for a blackjack or bust.
         if (hand.equals(playerHand)) { //checks if the parameter is player's hand.
             if(getSumOfHand(hand) == 21){ //if it is 21, player has done blackjack and the game is over.
+                playSE(".//res//win.wav");
                 faceDown = false;
                 dealerWon = false; //we set it to false because user won.
                 JOptionPane.showMessageDialog(frame, "PLAYER HAS DONE BLACKJACK! PLAYER HAS WON!"); //we print out the result ot JOptionPane.
@@ -154,6 +157,7 @@ public class Game {
                 roundOver = true;
             }
             else if (getSumOfHand(hand) > 21) { //if it is bigger than 21, then the player hand has busted, dealer has won.
+                playSE(".//res//loses.wav");
                 faceDown = false; JOptionPane.showMessageDialog(frame, "PLAYER HAS BUSTED! DEALER HAS WON!");
                 rest();
                 roundOver = true;
@@ -161,12 +165,14 @@ public class Game {
         }
         else { 
             if(getSumOfHand(hand) == 21) { 
+                playSE(".//res//loses.wav");
                 faceDown = false;
                 JOptionPane.showMessageDialog(frame, "DEALER HAS DONE BLACKJACK! DEALER HAS WON!");
                 rest();
                 roundOver = true;
             }
             else if (getSumOfHand(hand) > 21) {
+                playSE(".//res//win.wav");
                 faceDown = false;
                 dealerWon = false;
                 JOptionPane.showMessageDialog(frame, "DEALER HAS JUST BUSTED! PLAYER HAS WON!");
@@ -239,6 +245,15 @@ public class Game {
         }
         catch (InterruptedException e) {}
     }
+    
+    public void playSE(String Sound) {
 
+        SE.setFile(Sound);
+        SE.play();
+    }
+    public static void stopSE() {
+
+        SE.stop();
+    }
 
 }
