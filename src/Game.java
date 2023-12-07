@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.Font;
-import java.io.FileInputStream;
-import java.io.*;
+//import java.io.FileInputStream;
+//import java.io.*;
 
 public class Game {
 
@@ -39,24 +39,27 @@ public class Game {
     public void formGame() {
 
         System.out.println("GAME FORMED");
-        frame.setTitle("BLACKJACK!");
+        frame.setTitle("xì dách phương tây");
         frame.setSize(1130, 665);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
 
         btnHit = new JButton("HIT");
-        btnHit.setBounds(390, 550, 100, 50);
-        btnHit.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+        btnHit.setBounds(490, 550, 100, 50);
+        btnHit.setFont(new Font("Times New Roman", Font.BOLD, 20));
+
         btnStand = new JButton("STAND");
-        btnStand.setBounds(520, 550, 100, 50);
-        btnStand.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+        btnStand.setBounds(610, 550, 120, 50);
+        btnStand.setFont(new Font("Times New Roman", Font.BOLD, 20));
+
         btnDouble = new JButton("DOUBLE");
-        btnDouble.setBounds(650, 550, 100, 50);
-        btnDouble.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-        btnExit = new JButton("EXIT CASINO");
-        btnExit.setBounds(930, 240, 190, 50);
-        btnExit.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+        btnDouble.setBounds(750, 550, 120, 50);
+        btnDouble.setFont(new Font("Times New Roman", Font.BOLD, 20));
+
+        btnExit = new JButton("EXIT");
+        btnExit.setBounds(970, 550, 100, 50);
+        btnExit.setFont(new Font("Times New Roman", Font.BOLD, 20));
 
         frame.add(btnHit);
         frame.add(btnStand);
@@ -65,7 +68,7 @@ public class Game {
 
         btnExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "You have left the casino with " +  Tester.currentBalance + ".");
+                JOptionPane.showMessageDialog(frame, "You have left the casio with " +  Tester.currentBalance + " coins");
                 System.exit(0);
             }
         });
@@ -77,6 +80,7 @@ public class Game {
     }
 
     public void startGame() {
+
         for(int i = 0; i<2; i++) {
             dealerHand.add(deck.getCard(i));
         }
@@ -104,7 +108,8 @@ public class Game {
                     checkHand(dealerHand); //as usual, we check his hand for any potential round over situation.
                 }
             }
-        });
+        }
+        );
 
         btnDouble.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -129,13 +134,13 @@ public class Game {
                     if(getSumOfHand(playerHand) > getSumOfHand(dealerHand)) {
                         faceDown = false;
                         dealerWon = false;
-                        JOptionPane.showMessageDialog(frame, "PLAYER HAS WON BECAUSE OF A BETTER HAND!");
+                        JOptionPane.showMessageDialog(frame, "PLAYER WON DUE TO A BETTER HAND!");
                         rest();
                         roundOver = true;
                     }
                     else {
                         faceDown = false;
-                        JOptionPane.showMessageDialog(frame, "DEALER HAS WON BECAUSE OF A BETTER HAND!");
+                        JOptionPane.showMessageDialog(frame, "DEALER WON DUE TO A BETTER HAND!");
                         rest();
                         roundOver = true;
                     }
@@ -149,7 +154,7 @@ public class Game {
             if(getSumOfHand(hand) == 21){ //if it is 21, player has done blackjack and the game is over.
                 faceDown = false;
                 dealerWon = false; //we set it to false because user won.
-                JOptionPane.showMessageDialog(frame, "PLAYER HAS DONE BLACKJACK! PLAYER HAS WON!"); //we print out the result ot JOptionPane.
+                JOptionPane.showMessageDialog(frame, "PLAYER HAS GOT BLACKJACK! PLAYER HAS WON!"); //we print out the result ot JOptionPane.
                 rest();
                 roundOver = true;
             }
@@ -162,7 +167,7 @@ public class Game {
         else { 
             if(getSumOfHand(hand) == 21) { 
                 faceDown = false;
-                JOptionPane.showMessageDialog(frame, "DEALER HAS DONE BLACKJACK! DEALER HAS WON!");
+                JOptionPane.showMessageDialog(frame, "DEALER HAS GOT BLACKJACK! DEALER HAS WON!");
                 rest();
                 roundOver = true;
             }
