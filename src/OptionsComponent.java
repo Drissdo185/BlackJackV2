@@ -34,7 +34,7 @@ public class OptionsComponent extends JComponent implements ActionListener{
             logo = ImageIO.read(new File("images/logo.png"));
         }
         catch(IOException e) {}
-       
+
         g2.drawImage(backgroundImage, 0, 0, null);
         g2.drawImage(logo, 220, 20, null);
 
@@ -62,9 +62,11 @@ public class OptionsComponent extends JComponent implements ActionListener{
         JButton selectedButton = (JButton)e.getSource();
 
         if(selectedButton == btnExit) {
+            playSE(".//res//chips.wav");
             System.exit(0);
         }
         else if(selectedButton == btnPlay) {
+            playSE(".//res//chips.wav");
             Tester.currentState = Tester.STATE.GAME;
             Tester.menuFrame.dispose();
             Tester.gameRefreshThread.start();
@@ -72,9 +74,10 @@ public class OptionsComponent extends JComponent implements ActionListener{
             //playAmbienceMusic();
         }
         else if(selectedButton == btnRule) {
+            playSE(".//res//chips.wav");
             JOptionPane.showMessageDialog(this, "1. GOAL: have a hand value closer to 21 than the dealer's hand without exceeding 21." +
                             "\n2. CARD VALUES:" +
-                            "\n   - Face cards (King, Queen, Jack) are each worth 10 points." + 
+                            "\n   - Face cards (King, Queen, Jack) are each worth 10 points." +
                             "\n   - Aces can be worth either 1 or 11 points, depending on which value benefits the hand more." +
                             "\n3. THE DEAL: You are dealt two cards each, and the dealer receives one card face up and one face down (hole card)." +
                             "\n4. TURN:" +
@@ -89,10 +92,15 @@ public class OptionsComponent extends JComponent implements ActionListener{
                     JOptionPane.INFORMATION_MESSAGE);
         }
         else if(selectedButton == btnInfo) {
+            playSE(".//res//card-sound.wav");
             JOptionPane.showMessageDialog(this, "Product of Driss dep trai va nhung nguoi ban" +
                     "\n:>>>>>>>>", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    public void playSE(String Sound) {
 
+        SE.setFile(Sound);
+        SE.play();
+    }
 
 }
