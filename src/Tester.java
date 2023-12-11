@@ -1,27 +1,22 @@
 import java.awt.Color;
 import java.awt.Font;
-/*import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-*/import java.io.File;
+import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-//import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+
 
 public class Tester {
     JButton btnStart;
     public static JFrame Login = new JFrame();
-
     public static JFrame menuFrame = new JFrame();
     public static JFrame gameFrame = new JFrame();
-
     public static ImageIcon icon = new ImageIcon("images/icon.png");
 
     //private static BufferedImage backgroundImage;
@@ -30,38 +25,60 @@ public class Tester {
     private static int dealerScore = 0;
     public static int currentBalance;
 
+
     public static Game newGame = new Game(gameFrame);
     private static boolean isFirstTime = true;
+
+
 
     public static enum STATE{
         MENU,
         GAME
     };
 
-    public static STATE currentState = STATE.MENU; //the first state is the MENU state.
+    public static STATE currentState = STATE.MENU;
+
+
 
     public static void main(String[] args) throws InterruptedException {
 
         if(currentState == STATE.MENU) {
+            setCommonProperties();
             openMenu();
-        }
+        }    
     }
 
-    public static void openMenu() {
 
-        
+
+    public static void setCommonProperties() {
+        Login.setIconImage(icon.getImage());
+        Login.setTitle("xì dách phương Tây");
+
+        menuFrame.setIconImage(icon.getImage());
+        menuFrame.setTitle("xì dách phương Tây");
+
+        gameFrame.setIconImage(icon.getImage());
+        gameFrame.setTitle("xì dách phương tây");
+    }
+    
+    
+
+    public static void openMenu() {   
+
         try{
             Login.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("images/backgroundMenu.png")))));
+   
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Login.setTitle("BLACKJACK!");
+        
         Login.setSize(800, 600);
         Login.setLocationRelativeTo(null);
         Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Login.setResizable(false);
+        Login.setResizable(false);        
 
-        //Adding the text fields and the button to the frame.
+
+
         JTextField namePlayer = new JTextField();
         namePlayer.setBounds(330, 200, 200, 30);
         namePlayer.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
@@ -74,11 +91,11 @@ public class Tester {
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setForeground(Color.WHITE);
 
+
         JTextField balanceTextField = new JTextField();
         balanceTextField.setBounds(330, 300, 200, 30);
         balanceTextField.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-        balanceTextField.setHorizontalAlignment(JTextField.CENTER);
-        
+        balanceTextField.setHorizontalAlignment(JTextField.CENTER);        
         
 
         JLabel label2 = new JLabel("Enter your balance: ");
@@ -86,7 +103,6 @@ public class Tester {
         label2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         label2.setHorizontalAlignment(JLabel.CENTER);
         label2.setForeground(Color.WHITE);
-
 
 
 
@@ -105,6 +121,7 @@ public class Tester {
         Login.add(btnStart);
         Login.setVisible(true);
 
+        
         btnStart.addActionListener(e -> {
             String name = namePlayer.getText();
             String balance = balanceTextField.getText();
@@ -113,7 +130,6 @@ public class Tester {
             } else {
                 currentBalance = Integer.parseInt(balance);
                 Login.setVisible(false);
-                menuFrame.setTitle("BLACKJACK!");
                 menuFrame.setSize(1130, 665);
                 menuFrame.setLocationRelativeTo(null);
                 menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -123,13 +139,7 @@ public class Tester {
                 menuFrame.add(beginningComponent);
                 menuFrame.setVisible(true);
             }
-        });
-       
-        
-        
-
-
-    
+        }); 
     }
     
 
@@ -150,25 +160,23 @@ public class Tester {
         public void run () {
             while(true) {
                 if (isFirstTime||newGame.roundOver) {
-                    System.out.println("Lets refresh the game!");
                     if (newGame.dealerWon){
-                        dealerScore++;
+                        dealerScore++; 
                         currentBalance-= GameComponent.currentBet;
-                    }
-                    else {
+                        }
+                    else{
                         playerScore++;
-                        currentBalance+= GameComponent.currentBet*2;
+                        currentBalance+= GameComponent.currentBet;
                     }
-                    
-                    gameFrame.setIconImage(icon.getImage());    
+                
+                
+                gameFrame.getContentPane().removeAll();
+                newGame = new Game(gameFrame); 
+                newGame.formGame();
 
-                    gameFrame.getContentPane().removeAll();
-                    newGame = new Game(gameFrame);
-                    newGame.formGame();
-
-                    isFirstTime = false;
-                }
+                isFirstTime = false;
             }
-        }
-    };
+      }
+    }
+  };
 }
