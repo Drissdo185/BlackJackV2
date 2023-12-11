@@ -62,9 +62,11 @@ public class OptionsComponent extends JComponent implements ActionListener{
         JButton selectedButton = (JButton)e.getSource();
 
         if(selectedButton == btnExit) {
+            playSE(".//res//chips.wav");
             System.exit(0);
         }
         else if(selectedButton == btnPlay) {
+            playSE(".//res//chips.wav");
             Tester.currentState = Tester.STATE.GAME;
             Tester.menuFrame.dispose();
             Tester.gameRefreshThread.start();
@@ -72,6 +74,7 @@ public class OptionsComponent extends JComponent implements ActionListener{
             //playAmbienceMusic();
         }
         else if(selectedButton == btnRule) {
+            playSE(".//res//chips.wav");
             JOptionPane.showMessageDialog(this, "1. GOAL: have a hand value closer to 21 than the dealer's hand without exceeding 21." +
                             "\n2. CARD VALUES:" +
                             "\n   - Face cards (King, Queen, Jack) are each worth 10 points." + 
@@ -93,6 +96,10 @@ public class OptionsComponent extends JComponent implements ActionListener{
                     "\n:>>>>>>>>", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    public void playSE(String Sound) {
 
+        SE.setFile(Sound);
+        SE.play();
+    }
 
 }
