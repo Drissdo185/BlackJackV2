@@ -145,20 +145,9 @@ public class Tester {
             }
         });}
         
-        public static String getPlayerName() {
-            return namePlayer.getText();
-        }
+        
        
-        
-        
-
-
-        
-        
-
-
-
-
+    
     public static Thread gameRefreshThread = new Thread () {
         public void run () {
             while(true){

@@ -20,6 +20,7 @@ public class GameComponent extends JComponent implements MouseListener {
     public static boolean betMade = false; 
     private int currentBalance; 
     public static int currentBet; 
+    SE se = new SE();
 
 
     private static BufferedImage chip;
@@ -139,57 +140,66 @@ public class GameComponent extends JComponent implements MouseListener {
         int mouseY = e.getY();
 
 
+        if(currentBalance == 0) {
+                JOptionPane.showMessageDialog(null, "You don't have money to play. Please get more money to continue playing.");
+                return; 
+            }
+
+
         if(mouseX>= 50 && mouseX<=250 && mouseY>=320 && mouseY<=550) {
+            playSE("sounds/chips.wav");
             
             betMade = true;
             String[] options = new String[] {"1", "5", "10", "25", "100", "All In"};
             int response = JOptionPane.showOptionDialog(null, "Please choose your betting amount", "BETTING",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
+            int betAmount = 0;
             if(response == 0) {
-                currentBet = 1;
-                currentBalance -= 1;
+                betAmount = 1;
             }
             else if(response == 1) {
-                currentBet = 5;
-                currentBalance -= 5;
+                betAmount = 5;
             }
             else if(response == 2) {
-                currentBet = 10;
-                currentBalance -= 10;
+                betAmount = 10;
             }
             else if(response == 3) {
-                currentBet = 25;
-                currentBalance -= 25;
+                betAmount = 25;
             }
             else if(response == 4) {
-                currentBet = 100;
-                currentBalance -= 100;
+                betAmount = 100;
             }
             else if(response == 5) { 
-                currentBet = currentBalance;
-                currentBalance = 0;
+                betAmount = currentBalance;
             }
-            else { 
-                currentBet = 0;
-                currentBalance -= 0;
+            playSE("sounds/rutbai.wav");
+
+            // Check if bet is larger than current balance
+            if(betAmount > currentBalance) {
+                JOptionPane.showMessageDialog(null, "Your bet is larger than your current balance. Please enter a valid bet.");
+                return; // Stop the betting process
             }
 
-            if(currentBalance == 0) {
-                JOptionPane.showMessageDialog(null, "You don't have money to play. Please get more money to continue playing.");
-                return; 
-            }
-            
-            if(currentBalance == 0) {
-                JOptionPane.showMessageDialog(null, "You don't have money to play. Please get more money to continue playing.");
-                return; 
-            }
-    
+            currentBet = betAmount;
+            currentBalance -= betAmount;
 
-
+        
 
             Tester.newGame.startGame();
         }
+        
+    }
+     //Play the sound effect  
+    private void playSE(String Sound) {
+        
+        se.setFile(Sound);
+        se.play();	
+    }
+    //Stop the music
+    public void stopSE() {
+        
+        se.stop();
     }
     public void mouseExited(MouseEvent e) {
 

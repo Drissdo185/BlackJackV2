@@ -1,5 +1,13 @@
 import java.util.ArrayList;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.Font;
 
@@ -26,6 +34,7 @@ public class Game {
     JButton btnStand;
     //JButton btnDouble;
     JButton btnExit;
+    SE se = new SE();
 
 
 
@@ -94,6 +103,8 @@ public class Game {
 
 
     public void startGame() {
+        
+        
 
         for(int i = 0; i<2; i++) {
             dealerHand.add(deck.getCard(i));
@@ -118,6 +129,7 @@ public class Game {
 
         btnHit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)  {
+                playSE("sounds/rutbai.wav");
                 addCard(playerHand);
                 checkHand(playerHand);
 
@@ -267,6 +279,19 @@ public class Game {
         }
         return 22;
     }
+    //Play the sound effect  
+    private void playSE(String Sound) {
+        
+        se.setFile(Sound);
+        se.play();	
+    }
+    //Stop the music
+    public void stopSE() {
+        
+        se.stop();
+    }
+
+
 
 
 
