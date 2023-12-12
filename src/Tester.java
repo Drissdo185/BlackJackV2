@@ -47,7 +47,7 @@ public class Tester {
     public static void openMenu() {
 
         
-        /*try{
+        try{
             Login.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/bgmenu.png")))));
         } catch (IOException e) {
             e.printStackTrace();
@@ -120,23 +120,9 @@ public class Tester {
                 menuFrame.add(beginningComponent);
                 menuFrame.setVisible(true);
             }
-        });*/
+        });
        
         
-        
-
-
-        
-
-        menuFrame.setTitle("BLACKJACK!");
-        menuFrame.setSize(1130, 665);
-        menuFrame.setLocationRelativeTo(null);
-        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuFrame.setResizable(false);
-
-        OptionsComponent beginningComponent = new OptionsComponent();
-        menuFrame.add(beginningComponent);
-        menuFrame.setVisible(true);
     }
 
     
