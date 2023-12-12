@@ -8,6 +8,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
+    public BufferedImage PlayButtonHighlight;
+    public BufferedImage HelpButton;
+    public BufferedImage QuitButton;
+
+    private JButton btnPlay = new JButton("PLAY");
+    private JButton btnExit = new JButton("EXIT");
+    private JButton btnRule = new JButton("RULE");
+    private JButton btnInfo = new JButton("INFO");
+    private static BufferedImage backgroundImage, logo;
+
+    public OptionsComponent() {
+        btnPlay.addActionListener(this);
+        btnExit.addActionListener(this);
+        btnRule.addActionListener(this);
+        btnInfo.addActionListener(this);
+
 
 public class OptionsComponent extends JComponent implements MouseListener{
 
@@ -22,6 +38,7 @@ public class OptionsComponent extends JComponent implements MouseListener{
 
     public OptionsComponent() {
         addMouseListener(this);
+
     }
 
 
@@ -31,6 +48,10 @@ public class OptionsComponent extends JComponent implements MouseListener{
 
 
         try {
+
+            backgroundImage = ImageIO.read(new File("images/background.png"));
+            logo = ImageIO.read(new File("images/logo.png"));
+
             backgroundImage = ImageIO.read(new File("images/background2.png"));
             logo = ImageIO.read(new File("images/logo.png"));
 
@@ -38,12 +59,37 @@ public class OptionsComponent extends JComponent implements MouseListener{
             helpButton = ImageIO.read(new File("images/helpButton.png"));
             quitButton = ImageIO.read(new File("images/quitButton.png"));
             aboutUs = ImageIO.read(new File("images/aboutUs.png"));
+
         }
         catch(IOException e) {}
                    
         
         g2.drawImage(backgroundImage, 0, 0, 1140, 640, null);
         g2.drawImage(logo, 250, 0, 650, 250, null);
+
+
+        g2.drawImage(backgroundImage, 0, 0, null);
+        g2.drawImage(logo, 220, 20, null);
+
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Arial", Font.BOLD, 30));
+        g2.drawString("cờ bạc, người không chơi là người thắng!", 270, 580);
+
+        btnPlay.setBounds(370, 350, 150, 60);
+        btnExit.setBounds(370, 450, 150, 60);
+        btnRule.setBounds(610, 350, 150, 60);
+        btnInfo.setBounds(610, 450, 150, 60);
+
+        btnPlay.setFont(new Font("Times New Roman", Font.BOLD, 36));
+        btnExit.setFont(new Font("Times New Roman", Font.BOLD, 36));
+        btnRule.setFont(new Font("Times New Roman", Font.BOLD, 36));
+        btnInfo.setFont(new Font("Times New Roman", Font.BOLD, 36));
+
+        super.add(btnPlay);
+        super.add(btnExit);
+        super.add(btnRule);
+        super.add(btnInfo);
+    }
 
         g2.drawImage(helpButton, 600, 520, 160, 70, null);
         g2.drawImage(quitButton, 380, 520, 160, 70, null);
@@ -55,6 +101,7 @@ public class OptionsComponent extends JComponent implements MouseListener{
         //g2.setFont(new Font("Arial", Font.BOLD, 30));
         g2.drawString("cờ bạc, người không chơi là người thắng!", 270, 600);*/
     }
+
 
 
 
@@ -105,23 +152,32 @@ public class OptionsComponent extends JComponent implements MouseListener{
 
 
 
-    /*public void actionPerformed(ActionEvent e) {
+    /public void actionPerformed(ActionEvent e) {
         JButton selectedButton = (JButton)e.getSource();
 
 
         if(selectedButton == btnExit) {
+            playSE(".//res//chips.wav");
             System.exit(0);
         }
         else if(selectedButton == btnPlay) {
+            playSE(".//res//chips.wav");
             Tester.currentState = Tester.STATE.GAME;
             Tester.menuFrame.dispose();
             Tester.gameRefreshThread.start();
             Tester.gameCheckThread.start();
         }
         else if(selectedButton == btnRule) {
+
+            playSE(".//res//chips.wav");
+            JOptionPane.showMessageDialog(this, "1. GOAL: have a hand value closer to 21 than the dealer's hand without exceeding 21." +
+                            "\n2. CARD VALUES:" +
+                            "\n   - Face cards (King, Queen, Jack) are each worth 10 points." +
+
             JOptionPane.showMessageDialog(this, "1. GOAL: have a hand value closer to 21 than the dealer's hand without exceeding 21." +
                             "\n2. CARD VALUES:" +
                             "\n   - Face cards (King, Queen, Jack) are each worth 10 points." + 
+
                             "\n   - Aces can be worth either 1 or 11 points, depending on which value benefits the hand more." +
                             "\n3. THE DEAL: You are dealt two cards each, and the dealer receives one card face up and one face down (hole card)." +
                             "\n4. TURN:" +
@@ -136,9 +192,10 @@ public class OptionsComponent extends JComponent implements MouseListener{
                     JOptionPane.INFORMATION_MESSAGE);
         }
         else if(selectedButton == btnInfo) {
+            playSE(".//res//chips.wav");
             JOptionPane.showMessageDialog(this, "Product of Driss dep trai va nhung nguoi ban" +
                     "\n:>>>>>>>>", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
-        }*/
+        }
     }
 
 
@@ -146,6 +203,14 @@ public class OptionsComponent extends JComponent implements MouseListener{
     public void mouseExited(MouseEvent e) {
 
     }
+
+    public void playSE(String Sound) {
+
+        SE.setFile(Sound);
+        SE.play();
+    }
+
+
     public void mouseEntered(MouseEvent e) {
 
     }
@@ -155,4 +220,5 @@ public class OptionsComponent extends JComponent implements MouseListener{
     public void mouseClicked(MouseEvent e) {
 
     }
+
 }

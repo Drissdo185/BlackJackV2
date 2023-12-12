@@ -49,6 +49,11 @@ public class Game {
 
     public void formGame() {
 
+
+        System.out.println("GAME FORMED");
+        frame.setTitle("xì dách phương tây");
+
+
         frame.setSize(1130, 665);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,6 +68,10 @@ public class Game {
         btnStand = new JButton("STAND");
         btnStand.setBounds(610, 550, 120, 50);
         btnStand.setFont(new Font("Times New Roman", Font.BOLD, 20));
+
+        btnDouble = new JButton("DOUBLE");
+        btnDouble.setBounds(750, 550, 120, 50);
+        btnDouble.setFont(new Font("Times New Roman", Font.BOLD, 20));
 
 
         btnExit = new JButton("EXIT");
@@ -93,7 +102,8 @@ public class Game {
 
 
 
-    public void startGame() {
+    public void startGame(){
+        playSE(".//res//raw.wav");
 
         for(int i = 0; i<2; i++) {
             dealerHand.add(deck.getCard(i));
@@ -115,6 +125,18 @@ public class Game {
         checkHand(dealerHand);
         checkHand(playerHand);
 
+        btnHit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addCard(playerHand); //we will first add a card to player's hand.
+                checkHand(playerHand); //then we check the player's hand because it could be round over.
+                if (getSumOfHand(playerHand)<17 && getSumOfHand(dealerHand)<17){ //if the round is not over, and if the total value of dealer's hand is smaller than 17, we add a card to dealer's hand.
+                    addCard(dealerHand);
+                    checkHand(dealerHand); //as usual, we check his hand for any potential round over situation.
+                }
+            }
+        }
+        );
+
 
         btnHit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)  {
@@ -127,8 +149,12 @@ public class Game {
                     checkHand(dealerHand);
                 }
             }
+
+        });
+
         }
         );
+
 
 
         btnStand.addActionListener(new ActionListener() {
@@ -142,15 +168,26 @@ public class Game {
   
                 if ((getSumOfHand(dealerHand)<=21) && getSumOfHand(playerHand)<=21) {
                     if(getSumOfHand(playerHand) > getSumOfHand(dealerHand)) {
+                        playSE(".//res//win.wav");
                         faceDown = false;
+
+                        dealerWon = false;
+                        JOptionPane.showMessageDialog(frame, "PLAYER WON THANKS TO A BETTER HAND!");
+                        rest();
+                        roundOver = true;
+                    }
+                    else {
+                        playSE(".//res//oi.wav");
+
                         dealerWon = false;                        
                         JOptionPane.showMessageDialog(frame, "PLAYER WON DUE TO A BETTER HAND!");
                         rest();
                         roundOver = true;
                     }
                     else{
+
                         faceDown = false;
-                        JOptionPane.showMessageDialog(frame, "DEALER HAS WON BECAUSE OF A BETTER HAND!");
+                        JOptionPane.showMessageDialog(frame, "DEALER WON DUE TO A BETTER HAND!");
                         rest();
                         roundOver = true;
                     }
@@ -159,6 +196,28 @@ public class Game {
         });
     }
   
+
+
+    public void checkHand (ArrayList<Card> hand) {//this method literally checks the hand for a blackjack or bust.
+        if (hand.equals(playerHand)) { //checks if the parameter is player's hand.
+            if(getSumOfHand(hand) == 21){ //if it is 21, player has done blackjack and the game is over.
+                playSE(".//res//win.wav");
+                faceDown = false;
+                dealerWon = false; //we set it to false because user won.
+                JOptionPane.showMessageDialog(frame, "PLAYER HAS GOT BLACKJACK! PLAYER HAS WON!"); //we print out the result ot JOptionPane.
+                rest();
+                roundOver = true;
+            }
+            else if (getSumOfHand(hand) > 21) { //if it is bigger than 21, then the player hand has busted, dealer has won.
+                playSE(".//res//oi.wav");
+                faceDown = false; JOptionPane.showMessageDialog(frame, "PLAYER HAS BUSTED! DEALER HAS WON!");
+                rest();
+                roundOver = true;
+            }
+        }
+        else {
+            if(getSumOfHand(hand) == 21) {
+                playSE(".//res//oi.wav");
 
 
     public void checkHand(ArrayList<Card> hand) {
@@ -177,11 +236,18 @@ public class Game {
             }
         } else{
             if (getSumOfHand(hand) == 21) {
+
                 faceDown = false;
                 JOptionPane.showMessageDialog(frame, "DEALER HAS GOT BLACKJACK! DEALER HAS WON!");
                 rest();
                 roundOver = true;
+
+            }
+            else if (getSumOfHand(hand) > 21) {
+                playSE(".//res//win.wav");
+
             } else if (getSumOfHand(hand) > 21) {
+
                 faceDown = false;
                 dealerWon = false;
                 JOptionPane.showMessageDialog(frame, "DEALER HAS JUST BUSTED! PLAYER HAS WON!");
@@ -195,8 +261,13 @@ public class Game {
 
     public void addCard(ArrayList<Card> hand) {
 
+        hand.add(deck.getCard(0));
+        deck.removeCard(0);
+
+
         hand.add(deck.getCard(0)); 
         deck.removeCard(0); 
+
         faceDown = true;
     }
 
@@ -204,12 +275,16 @@ public class Game {
 
     public boolean hasAceInHand(ArrayList<Card> hand) {
 
+        for (int i = 0; i < hand.size(); i++){
+
+
         for (int i = 0; i < hand.size(); i++){ 
+
             if(hand.get(i).getValue() == 11) {
-                return true; 
+                return true;
             }
         }
-        return false; 
+        return false;
     }
 
 
@@ -233,7 +308,7 @@ public class Game {
         for (int i = 0; i < hand.size(); i++){
             handSum = handSum + hand.get(i).getValue();
         }
-        return handSum; 
+        return handSum;
     }
 
 
@@ -270,4 +345,11 @@ public class Game {
         }
         catch (InterruptedException e) {}
     }
+
+    public void playSE(String Sound) {
+
+        SE.setFile(Sound);
+        SE.play();
+    }
+
 }
