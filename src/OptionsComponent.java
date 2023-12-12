@@ -1,62 +1,113 @@
-import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class OptionsComponent extends JComponent implements ActionListener{
 
-    private JButton btnPlay = new JButton("PLAY");
-    private JButton btnExit = new JButton("EXIT");
-    private JButton btnHelp = new JButton("HELP");
-    private JButton btnInfo = new JButton("INFO");
-    private JButton btnStart = new JButton("Start");
-    private static BufferedImage backgroundImage, logo;
+
+public class OptionsComponent extends JComponent implements MouseListener{
+
+    private static BufferedImage playButton;
+    private static BufferedImage helpButton;
+    private static BufferedImage quitButton;
+    private static BufferedImage aboutUs;
+
+    private static BufferedImage backgroundImage;
+    private static BufferedImage logo;
+
 
     public OptionsComponent() {
-        btnPlay.addActionListener(this);
-        btnExit.addActionListener(this);
-        btnHelp.addActionListener(this);
-        btnInfo.addActionListener(this);
+        addMouseListener(this);
     }
+
+
 
     public void paintComponent(Graphics g) {
-
         Graphics2D g2 = (Graphics2D) g;
 
+
         try {
-            backgroundImage = ImageIO.read(new File("images/background.png"));
-            logo = ImageIO.read(new File("src/logo.png"));
+            backgroundImage = ImageIO.read(new File("images/background2.png"));
+            logo = ImageIO.read(new File("images/logo.png"));
+
+            playButton = ImageIO.read(new File("images/playButton.png"));
+            helpButton = ImageIO.read(new File("images/helpButton.png"));
+            quitButton = ImageIO.read(new File("images/quitButton.png"));
+            aboutUs = ImageIO.read(new File("images/aboutUs.png"));
         }
         catch(IOException e) {}
+                   
+        
+        g2.drawImage(backgroundImage, 0, 0, 1140, 640, null);
+        g2.drawImage(logo, 250, 0, 650, 250, null);
 
-        g2.drawImage(backgroundImage, 0, 0, null);
-        g2.drawImage(logo, 390, 100, null);
+        g2.drawImage(helpButton, 600, 520, 160, 70, null);
+        g2.drawImage(quitButton, 380, 520, 160, 70, null);
+        g2.drawImage(playButton, 600, 400, 160, 70, null);
+        g2.drawImage(aboutUs, 350, 385, 200, 110, null);
 
-        g2.setColor(Color.WHITE);
-        g2.setFont(new Font("Arial", Font.BOLD, 30));
-        g2.drawString("Chơi đi, muốn làm giàu thì chơi đi", 220, 580);
 
-        btnPlay.setBounds(500, 300, 150, 80);
-        btnExit.setBounds(500, 400, 150, 80);
-        btnHelp.setBounds(80, 75, 150, 80);
-        btnInfo.setBounds(900, 75, 150, 80);
-
-        btnPlay.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
-        btnExit.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
-        btnHelp.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
-        btnInfo.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
-
-        super.add(btnPlay);
-        super.add(btnExit);
-        super.add(btnHelp);
-        super.add(btnInfo);
+        /*g2.setColor(Color.WHITE);
+        //g2.setFont(new Font("Arial", Font.BOLD, 30));
+        g2.drawString("cờ bạc, người không chơi là người thắng!", 270, 600);*/
     }
 
-    public void actionPerformed(ActionEvent e) {
+
+
+    public void mousePressed(MouseEvent e) {
+        int mouseX = e.getX();
+        int mouseY = e.getY();
+
+        //quit button
+        if(mouseX>= 380 && mouseX<=540 && mouseY>=520 && mouseY<=590) {
+            System.exit(0);
+        }
+
+
+        //play button
+        else if(mouseX>= 600 && mouseX<=760 && mouseY>=400 && mouseY<=470) {
+            Tester.currentState = Tester.STATE.GAME;
+            Tester.menuFrame.dispose();
+            Tester.gameRefreshThread.start();
+            Tester.gameCheckThread.start();
+        }
+
+
+        //help button
+        else if(mouseX>= 600 && mouseX<=760 && mouseY>=520 && mouseY<=590) {
+            JOptionPane.showMessageDialog(this, "1. GOAL: have a hand value closer to 21 than the dealer's hand without exceeding 21." +
+                            "\n2. CARD VALUES:" +
+                            "\n   - Face cards (King, Queen, Jack) are each worth 10 points." + 
+                            "\n   - Aces can be worth either 1 or 11 points, depending on which value benefits the hand more." +
+                            "\n3. THE DEAL: You are dealt two cards each, and the dealer receives one card face up and one face down (hole card)." +
+                            "\n4. TURN:" +
+                            "\n   - You can choose to \"hit\" (take another card) or \"stand\" (keep your current hand)." +
+                            "\n   - You can continue to hit until you decide to stand, or until your hand exceeds 21, resulting in a bust." +
+                            "\n5. WINNING & LOSING:" +
+                            "\n   - You win if your hand is closer to 21 than the dealer's hand without busting." +
+                            "\n   - If you bust (exceeds 21), the dealer wins regardless of the dealer's hand." +
+                            "\n   - If the dealer busts, you win." +
+                            "\n   - If both the player (you) and dealer have the same hand value, it's a push (a tie), and your bet is returned." +
+                            "\n6. BLACKJACK: If the player (you) or dealer is dealt 21 from the start (Ace & a 10-value card), player/dealer got a blackjack" , "BLACKJACK'S BASIC GAMEPLAY",
+                    JOptionPane.INFORMATION_MESSAGE);                    
+        }
+
+
+        //about us button
+        else if(mouseX>= 350 && mouseX<=550 && mouseY>=395 && mouseY<=465) {
+            JOptionPane.showMessageDialog(this, "Product of Driss dep trai va nhung nguoi ban" +
+                    "\n:>>>>>>>>", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+
+
+    /*public void actionPerformed(ActionEvent e) {
         JButton selectedButton = (JButton)e.getSource();
+
 
         if(selectedButton == btnExit) {
             System.exit(0);
@@ -66,23 +117,42 @@ public class OptionsComponent extends JComponent implements ActionListener{
             Tester.menuFrame.dispose();
             Tester.gameRefreshThread.start();
             Tester.gameCheckThread.start();
-            //playAmbienceMusic();
         }
-        else if(selectedButton == btnHelp) {
-            JOptionPane.showMessageDialog(this, "The goal of blackjack is to beat the dealer's hand without going over 21." +
-                            "\nFace cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand." +
-                            "\nEach player starts with two cards, one of the dealer's cards is hidden until the end." +
-                            "\nTo 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn." +
-                            "\nIf you go over 21 you bust, and the dealer wins regardless of the dealer's hand." +
-                            "\nIf you go over 21 you bust, and the dealer wins regardless of the dealer's hand." +
-                            "\nIf you are dealt 21 from the start (Ace & 10), you got a blackjack.", "QUICK&EASY BLACKJACK HELP",
+        else if(selectedButton == btnRule) {
+            JOptionPane.showMessageDialog(this, "1. GOAL: have a hand value closer to 21 than the dealer's hand without exceeding 21." +
+                            "\n2. CARD VALUES:" +
+                            "\n   - Face cards (King, Queen, Jack) are each worth 10 points." + 
+                            "\n   - Aces can be worth either 1 or 11 points, depending on which value benefits the hand more." +
+                            "\n3. THE DEAL: You are dealt two cards each, and the dealer receives one card face up and one face down (hole card)." +
+                            "\n4. TURN:" +
+                            "\n   - You can choose to \"hit\" (take another card) or \"stand\" (keep your current hand)." +
+                            "\n   - You can continue to hit until you decide to stand, or until your hand exceeds 21, resulting in a bust." +
+                            "\n5. WINNING & LOSING:" +
+                            "\n   - You win if your hand is closer to 21 than the dealer's hand without busting." +
+                            "\n   - If you bust (exceeds 21), the dealer wins regardless of the dealer's hand." +
+                            "\n   - If the dealer busts, you win." +
+                            "\n   - If both the player (you) and dealer have the same hand value, it's a push (a tie), and your bet is returned." +
+                            "\n6. BLACKJACK: If the player (you) or dealer is dealt 21 from the start (Ace & a 10-value card), player/dealer got a blackjack" , "BLACKJACK'S BASIC GAMEPLAY",
                     JOptionPane.INFORMATION_MESSAGE);
         }
         else if(selectedButton == btnInfo) {
             JOptionPane.showMessageDialog(this, "Product of Driss dep trai va nhung nguoi ban" +
                     "\n:>>>>>>>>", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
-        }
+        }*/
     }
 
 
+
+    public void mouseExited(MouseEvent e) {
+
+    }
+    public void mouseEntered(MouseEvent e) {
+
+    }
+    public void mouseReleased(MouseEvent e) {
+
+    }
+    public void mouseClicked(MouseEvent e) {
+
+    }
 }

@@ -6,13 +6,12 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
-
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
+
 
 public class GameComponent extends JComponent implements MouseListener {
-    public BufferedImage chip;
+
     private ArrayList<Card> dealerHand; 
     private ArrayList<Card> playerHand;
     private int dealerScore; 
@@ -21,51 +20,78 @@ public class GameComponent extends JComponent implements MouseListener {
     public static boolean betMade = false; 
     private int currentBalance; 
     public static int currentBet; 
-    public BufferedImage backgroundImage;
-    public BufferedImage logo;
+
+    private static BufferedImage chip;
+    private static BufferedImage backgroundImage;
+    private static BufferedImage board;
+    private static BufferedImage backsideOfACard;
+    private static BufferedImage box;
+
 
 
     public GameComponent(ArrayList<Card> dH, ArrayList<Card> pH) { 
+
         dealerHand = dH; 
         playerHand = pH;
+
         dealerScore = 0;
         playerScore = 0;
-        currentBalance = 1000; 
+
+
         addMouseListener(this);
     }
+
+
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        try {
+
+        try{
             backgroundImage = ImageIO.read(new File("images/background.png"));
-            logo = ImageIO.read(new File("images/blackjackLogo.png"));
+            board = ImageIO.read(new File("images/board.png"));
             chip = ImageIO.read(new File("images/chip.png"));
+            backsideOfACard = ImageIO.read(new File("images/backsideOfACard.jpg"));
+            box = ImageIO.read(new File("images/box.png"));
         }
         catch(IOException e) {}
 
-        g2.drawImage(backgroundImage, 0, 0, null); //we draw these images to the component.
-        g2.drawImage(logo, 510, 200, null);
-        g2.drawImage(chip, 50, 300, null);
-        g2.setColor(Color.WHITE); //we set the colors.
-        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 30)); //we change their fonts.
-        g2.drawString("DEALER", 515, 50); //we draw these strings which visualize the game.
-        g2.drawString("PLAYER", 515, 380);
-        g2.drawString("DEALER WON: ", 50, 100);
-        g2.drawString(Integer.toString(dealerScore), 300, 100); //we draw the dealer's score accordingly.
-        g2.drawString("PLAYER WON: ", 50, 150);
-        g2.drawString(Integer.toString(playerScore), 300, 150); //we draw the player's score accordingly.
-        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 15)); //we set the font again.
-        g2.drawString("To start each round, you have to first", 50, 250);
-        g2.drawString("bet an amount by clicking the chip below.", 50, 270);
-        g2.drawString("The best gaming experience is ", 830, 550);
-        g2.drawString("when you play with sound on!", 830, 570);
-        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-        g2.drawString("CURRENT BALANCE: " + currentBalance, 50, 570);
 
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        g2.drawString(sdf.format(cal.getTime()), 1020, 20);
+        g2.drawImage(backgroundImage, 0, 0, null);
+        g2.drawImage(chip, 40, 320, 230, 230, null);
+        g2.drawImage(board, -25, 0, 320, 120, null);
+        g2.drawImage(box, 40, 210, 230, 105, null);
+
+        g2.drawImage(backsideOfACard, 655, 80, 66, 115, null);
+        g2.drawImage(backsideOfACard, 655, 400,66, 115, null);
+        g2.drawImage(backsideOfACard, 740, 80, 66, 115, null);
+        g2.drawImage(backsideOfACard, 740, 400,66, 115, null);
+
+
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
+        
+
+        g2.drawString("DEALER", 550, 60);
+        g2.drawString("PLAYER", 550, 380);
+
+                
+        g2.setFont(new Font("Arial", Font.BOLD, 23));
+        g2.drawString("BALANCE: " + currentBalance, 20, 27);
+
+
+        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        g2.drawString("Dealer Won: ", 20, 110);
+        g2.drawString(Integer.toString(dealerScore), 160, 110);
+        g2.drawString("You Won: ", 120, 70);
+        g2.drawString(Integer.toString(playerScore), 230, 70);
+
+
+        g2.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        g2.drawString("CLICK the chip below", 73, 260);
+        g2.drawString("to begin each round", 75, 280);
+
+
 
         try {
             for (int i = 0; i < dealerHand.size(); i++) {
@@ -84,15 +110,18 @@ public class GameComponent extends JComponent implements MouseListener {
         }
         catch (IOException e) {}
 
+
         try {
-            for (int i = 0; i < playerHand.size(); i++) { //we do the same thing for the user hand with a foor loop again: we go through each of the cards in user's hand.
-                playerHand.get(i).printCard(g2, false, false, i); //we then draw each of the card on the component(screen). Extra information about parameters can be found in the Card class.
+            for (int i = 0; i < playerHand.size(); i++) {
+                playerHand.get(i).printCard(g2, false, false, i);
             }
         }
         catch (IOException e) {}
     }
 
-    public void refresh(int cB, int uS, int dS, boolean fD) { //this refresh method will refresh the GameComponent when it is called.
+
+
+    public void refresh(int cB, int uS, int dS, boolean fD) {
         currentBalance = cB;
         playerScore = uS;
         dealerScore = dS;
@@ -100,20 +129,26 @@ public class GameComponent extends JComponent implements MouseListener {
         this.repaint();
     }
 
-    public void mousePressed(MouseEvent e) {//in this void method, we will control mouse events of the user.
-        int mouseX = e.getX(); //we first get the x and y coordinates of the user's mouse's current position.
+
+
+    public void mousePressed(MouseEvent e) {
+        int mouseX = e.getX();
         int mouseY = e.getY();
 
-        if(mouseX>= 50 && mouseX<=200 && mouseY>=300 && mouseY<=450) {//we will only do something if the x and y coordinates fall on top of the chip image. The coordinates you see below give the end points of the chip image.
-            betMade = true; //if the user clicks on the chip image, then the bet is made.
-            String[] options = new String[] {"1", "5", "10", "25", "100"}; //we declare an array of options that will be given when the user clicks the chip and and JOptionPane dialog comes up.
-            int response = JOptionPane.showOptionDialog(null, "Please enter your betting amount!", "BETTING", //This is the dialog that will popup when user clicks the chip.
+
+        if(mouseX>= 50 && mouseX<=250 && mouseY>=320 && mouseY<=550) {
+            
+            betMade = true;
+            String[] options = new String[] {"1", "5", "10", "25", "100"};
+            int response = JOptionPane.showOptionDialog(null, "Please choose your betting amount", "BETTING",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-            if(response == 0) {//if the user selects the first response, he selected the bet as 1.
-                currentBet = 1; //we assign 1 to the current bet.
-                currentBalance -= 1; //we decrement the current balance by the current bet.
+
+  
+            if(response == 0) {
+                currentBet = 1;
+                currentBalance -= 1;
             }
-            else if(response == 1) {//the same thing goes on like this. The second respoonse is 5 so the bet is 5 and it is decreased from the current balance.
+            else if(response == 1) {
                 currentBet = 5;
                 currentBalance -= 5;
             }
@@ -130,16 +165,13 @@ public class GameComponent extends JComponent implements MouseListener {
                 currentBalance -= 100;
             }
             else { 
-                currentBet = 1;
-                currentBalance -= 1;
-                System.out.println("You haven't selected a proper bet. Thus, the bet is taken as 1."); 
+                currentBet = 0;
+                currentBalance -= 0;
             }
 
-            System.out.println("You have made your bet: " + currentBet + "." + " If you beat the dealer, you will increase your current balance by " + currentBet*2 +
-                    "; if the dealer beats you you will decrease your current balance by " + currentBet + "."); 
-            Tester.newGame.startGame(); 
-        }
 
+            Tester.newGame.startGame();
+        }
     }
     public void mouseExited(MouseEvent e) {
 
@@ -153,6 +185,4 @@ public class GameComponent extends JComponent implements MouseListener {
     public void mouseClicked(MouseEvent e) {
 
     }
-
-
 }
