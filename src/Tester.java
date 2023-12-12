@@ -154,18 +154,7 @@ public class Tester {
 
 
         
-        /* 
-        menuFrame.setTitle("BLACKJACK!");
-        menuFrame.setSize(1130, 665);
-        menuFrame.setLocationRelativeTo(null);
-        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuFrame.setResizable(false);
-
-        OptionsComponent beginningComponent = new OptionsComponent();
-        menuFrame.add(beginningComponent);
-        menuFrame.setVisible(true);
-    }
-     */
+        
 
 
 
