@@ -83,12 +83,12 @@ public class Game {
         });
 
 
-        atmosphereComponent = new GameComponent(dealerHand, playerHand); //we initialize the GameComponent that will be the overall atmosphere of our game.
-        atmosphereComponent.setBounds(0, 0, 1130, 665);  //we set the bounds of the component.
+        atmosphereComponent = new GameComponent(dealerHand, playerHand); 
+        atmosphereComponent.setBounds(0, 0, 1130, 665); 
 
 
-        frame.add(atmosphereComponent); //we add the component to the frame.
-        frame.setVisible(true); //we make the frame visible.
+        frame.add(atmosphereComponent);
+        frame.setVisible(true); 
     }
 
 
@@ -145,6 +145,12 @@ public class Game {
                         faceDown = false;
                         dealerWon = false;                        
                         JOptionPane.showMessageDialog(frame, "PLAYER WON DUE TO A BETTER HAND!");
+                        rest();
+                        roundOver = true;
+                    }
+                    else if(getSumOfHand(playerHand) < getSumOfHand(dealerHand)){
+                        faceDown = false;
+                        JOptionPane.showMessageDialog(frame, "DEALER HAS WON BECAUSE OF A BETTER HAND!");
                         rest();
                         roundOver = true;
                     }

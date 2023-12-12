@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 public class Tester {
     JButton btnStart;
+    private static JTextField namePlayer;
     public static JFrame Login = new JFrame();
     public static JFrame menuFrame = new JFrame();
     public static JFrame gameFrame = new JFrame();
@@ -66,40 +67,41 @@ public class Tester {
     public static void openMenu() {   
 
         
-        /*try{
-            Login.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/bgmenu.png")))));
+        try{
+            Login.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("images/Ngaungau.jpg")))));
         } catch (IOException e) {
             e.printStackTrace();
         }
         
-        Login.setSize(800, 600);
+        Login.setSize(700, 500);
         Login.setLocationRelativeTo(null);
         Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Login.setResizable(false);        
+        Login.setResizable(false);  
+        Login.setBackground(Color.BLACK);     
 
 
 
         JTextField namePlayer = new JTextField();
-        namePlayer.setBounds(330, 200, 200, 30);
+        namePlayer.setBounds(280, 200, 200, 30);
         namePlayer.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         namePlayer.setHorizontalAlignment(JTextField.CENTER);
         
 
         JLabel label = new JLabel("Enter your name: ");
-        label.setBounds(120, 200, 200, 30);
+        label.setBounds(100, 200, 200, 30);
         label.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setForeground(Color.WHITE);
 
 
         JTextField balanceTextField = new JTextField();
-        balanceTextField.setBounds(330, 300, 200, 30);
+        balanceTextField.setBounds(280, 250, 200, 30);
         balanceTextField.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         balanceTextField.setHorizontalAlignment(JTextField.CENTER);        
         
 
         JLabel label2 = new JLabel("Enter your balance: ");
-        label2.setBounds(120, 300, 200, 30);
+        label2.setBounds(95, 250, 200, 30);
         label2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         label2.setHorizontalAlignment(JLabel.CENTER);
         label2.setForeground(Color.WHITE);
@@ -108,7 +110,7 @@ public class Tester {
 
         //button
         JButton btnStart = new JButton("START");
-        btnStart.setBounds(320, 400, 200, 50);
+        btnStart.setBounds(280, 350, 200, 50);
         btnStart.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         btnStart.setBackground(Color.WHITE);
         btnStart.setForeground(Color.BLACK);
@@ -120,6 +122,8 @@ public class Tester {
         Login.add(namePlayer);
         Login.add(btnStart);
         Login.setVisible(true);
+
+
 
         
         btnStart.addActionListener(e -> {
@@ -139,14 +143,18 @@ public class Tester {
                 menuFrame.add(beginningComponent);
                 menuFrame.setVisible(true);
             }
-        });*/
+        });}
+        
+        public static String getPlayerName() {
+            return namePlayer.getText();
+        }
        
         
         
 
 
         
-
+        /* 
         menuFrame.setTitle("BLACKJACK!");
         menuFrame.setSize(1130, 665);
         menuFrame.setLocationRelativeTo(null);
@@ -157,7 +165,7 @@ public class Tester {
         menuFrame.add(beginningComponent);
         menuFrame.setVisible(true);
     }
-    
+     */
 
 
 

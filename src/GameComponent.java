@@ -21,11 +21,13 @@ public class GameComponent extends JComponent implements MouseListener {
     private int currentBalance; 
     public static int currentBet; 
 
+
     private static BufferedImage chip;
     private static BufferedImage backgroundImage;
     private static BufferedImage board;
     private static BufferedImage backsideOfACard;
     private static BufferedImage box;
+    
 
 
 
@@ -55,6 +57,7 @@ public class GameComponent extends JComponent implements MouseListener {
             box = ImageIO.read(new File("images/box.png"));
         }
         catch(IOException e) {}
+        
 
 
         g2.drawImage(backgroundImage, 0, 0, null);
@@ -82,9 +85,9 @@ public class GameComponent extends JComponent implements MouseListener {
 
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         g2.drawString("Dealer Won: ", 20, 110);
-        g2.drawString(Integer.toString(dealerScore), 160, 110);
-        g2.drawString("You Won: ", 120, 70);
-        g2.drawString(Integer.toString(playerScore), 230, 70);
+        g2.drawString(Integer.toString(dealerScore), 170, 110);
+        g2.drawString("You Won: ", 20, 70);
+        g2.drawString(Integer.toString(playerScore), 170, 70);
 
 
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
@@ -139,11 +142,10 @@ public class GameComponent extends JComponent implements MouseListener {
         if(mouseX>= 50 && mouseX<=250 && mouseY>=320 && mouseY<=550) {
             
             betMade = true;
-            String[] options = new String[] {"1", "5", "10", "25", "100"};
+            String[] options = new String[] {"1", "5", "10", "25", "100", "All In"};
             int response = JOptionPane.showOptionDialog(null, "Please choose your betting amount", "BETTING",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
-  
             if(response == 0) {
                 currentBet = 1;
                 currentBalance -= 1;
@@ -164,10 +166,26 @@ public class GameComponent extends JComponent implements MouseListener {
                 currentBet = 100;
                 currentBalance -= 100;
             }
+            else if(response == 5) { 
+                currentBet = currentBalance;
+                currentBalance = 0;
+            }
             else { 
                 currentBet = 0;
                 currentBalance -= 0;
             }
+
+            if(currentBalance == 0) {
+                JOptionPane.showMessageDialog(null, "You don't have money to play. Please get more money to continue playing.");
+                return; 
+            }
+            
+            if(currentBalance == 0) {
+                JOptionPane.showMessageDialog(null, "You don't have money to play. Please get more money to continue playing.");
+                return; 
+            }
+    
+
 
 
             Tester.newGame.startGame();
