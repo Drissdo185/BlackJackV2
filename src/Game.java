@@ -154,6 +154,7 @@ public class Game {
   
                 if ((getSumOfHand(dealerHand)<=21) && getSumOfHand(playerHand)<=21) {
                     if(getSumOfHand(playerHand) > getSumOfHand(dealerHand)) {
+                        playSE("sounds/winv2.wav");
                         faceDown = false;
                         dealerWon = false;                        
                         JOptionPane.showMessageDialog(frame, "PLAYER WON DUE TO A BETTER HAND!");
@@ -161,12 +162,14 @@ public class Game {
                         roundOver = true;
                     }
                     else if(getSumOfHand(playerHand) < getSumOfHand(dealerHand)){
+                        playSE("sounds/losev2.wav");
                         faceDown = false;
                         JOptionPane.showMessageDialog(frame, "DEALER HAS WON BECAUSE OF A BETTER HAND!");
                         rest();
                         roundOver = true;
                     }
                     else{
+                        playSE("sounds/losev2.wav");
                         faceDown = false;
                         JOptionPane.showMessageDialog(frame, "DEALER HAS WON BECAUSE OF A BETTER HAND!");
                         rest();
@@ -182,12 +185,14 @@ public class Game {
     public void checkHand(ArrayList<Card> hand) {
         if (hand.equals(playerHand)) {
             if (getSumOfHand(hand) == 21) {
+                playSE("sounds/winv2.wav");
                 faceDown = false;
                 dealerWon = false;                
                 JOptionPane.showMessageDialog(frame, "PLAYER HAS GOT BLACKJACK! PLAYER HAS WON!");
                 rest();
                 roundOver = true;
             } else if (getSumOfHand(hand) > 21) {
+                playSE("sounds/losev2.wav");
                 faceDown = false;           
                 JOptionPane.showMessageDialog(frame, "PLAYER HAS BUSTED! DEALER HAS WON!");
                 rest();
@@ -195,11 +200,13 @@ public class Game {
             }
         } else{
             if (getSumOfHand(hand) == 21) {
+                playSE("sounds/losev2.wav");
                 faceDown = false;
                 JOptionPane.showMessageDialog(frame, "DEALER HAS GOT BLACKJACK! DEALER HAS WON!");
                 rest();
                 roundOver = true;
             } else if (getSumOfHand(hand) > 21) {
+                playSE("sounds/winv2.wav");
                 faceDown = false;
                 dealerWon = false;
                 JOptionPane.showMessageDialog(frame, "DEALER HAS JUST BUSTED! PLAYER HAS WON!");
