@@ -63,7 +63,7 @@ public class GameComponent extends JComponent implements MouseListener {
         g2.drawString(Integer.toString(playerScore), 150, 70); //we draw the player's score accordingly.
 
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 15)); //we set the font again.
-        g2.drawString("Each round must begin after", 70, 330);
+        g2.drawString("Each round must begin after", 70, 340);
         g2.drawString("you've finished making a bet ", 70, 360);
         g2.drawString("by clicking the chips under.", 70, 390);
         //g2.drawString("The best gaming experience is ", 830, 550);
