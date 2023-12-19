@@ -24,6 +24,7 @@ public class GameComponent extends JComponent implements MouseListener {
     public BufferedImage backgroundImage;
 
 
+
     public GameComponent(ArrayList<Card> dH, ArrayList<Card> pH) { 
         dealerHand = dH; 
         playerHand = pH;
