@@ -11,9 +11,4 @@ Here are the guidelines for playing blackjack. It can be played either way: mult
 
 Have a hand value closer to 21 than the dealer's hand without exceeding 21.
 
-## DIRECTORIES
-```src```: This directory contains all the Java source files (classes) that are detailed below.  
 
-```images```: This directory contains images that will be displayed to the player to enhance gameplay.
-
-```sounds```: This directory contains sounds that will enhance user gameplay and add in a casino ambience.
