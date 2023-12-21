@@ -65,5 +65,19 @@ java -jar BlackjackClient.jar
 
 The following is a list of options that can be used when running the server and client. To operate the server or client, none of the choices are necessary.
 
+## CLASSES AND DESCRIPTIONS
+
+```Deck.java```->Deck Class: is a Java implementation that represents a standard deck of playing cards.
+
+It contains a private ArrayList named deck, which stores instances of a Card class. 
+
+The constructor initializes the deck by populating it with 52 cards, organized into four suits and thirteen ranks.
+
+Special considerations are made for aces, assigned a value of 11, and face cards (Jack, Queen, King), each assigned a value of 10. 
+
+The class provides methods for shuffling the deck (shuffle deck), retrieving a specific card at an index (getCard), and removing a card from the deck at a specified index (removeCard). 
+
+
+
 
 
