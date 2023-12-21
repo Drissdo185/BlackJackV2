@@ -7,6 +7,10 @@ This is a client-server multiplayer blackjack card game. Players can join new ta
 
 Here are the guidelines for playing blackjack. It can be played either way: multiplayer by using the server address option below to run the server on one computer and clients on other computers, or singleplayer by running the server and client on the same machine.
 
+## Goal
+
+Have a hand value closer to 21 than the dealer's hand without exceeding 21.
+
 ## DIRECTORIES
 ```src```: This directory contains all the Java source files (classes) that are detailed below.  
 
