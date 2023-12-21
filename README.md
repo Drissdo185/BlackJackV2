@@ -6,7 +6,7 @@ BlackJack supplemented with a graphical user interface.
 
 ## SCREENSHOTS
 ![Screenshot]()
-![Screenshot](screenshots/gamedescription.png)
+![Screenshot](C:\Users\DELL\Pictures\Screenshots)
 ![Screenshot](screenshots/uninitializedgame.png)
 ![Screenshot](screenshots/gameexample1.png)
 ![Screenshot](screenshots/gameexample2.png)
