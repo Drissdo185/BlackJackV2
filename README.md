@@ -11,4 +11,7 @@ Here are the guidelines for playing blackjack. It can be played either way: mult
 
 Have a hand value closer to 21 than the dealer's hand without exceeding 21.
 
+# CARD VALUES:
+Face cards (King, Queen, Jack) are each worth 10 points.
+
 
