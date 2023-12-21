@@ -13,5 +13,6 @@ Have a hand value closer to 21 than the dealer's hand without exceeding 21.
 
 # CARD VALUES:
 Face cards (King, Queen, Jack) are each worth 10 points.
+Aces can be worth either 1 or 11 points, depending on which value benefits the hand more.
 
 
