@@ -77,6 +77,9 @@ Special considerations are made for aces, assigned a value of 11, and face cards
 
 The class provides methods for shuffling the deck (shuffle deck), retrieving a specific card at an index (getCard), and removing a card from the deck at a specified index (removeCard). 
 
+```Game.java```->Game Class: This class calculates the Blackjack game itself. It starts the game, forms the hands, and checks the
+hands for a blackjack or bust. It calculates who wins each round and what happens when a round is over.
+
 
 
 
