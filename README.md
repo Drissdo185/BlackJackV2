@@ -77,8 +77,15 @@ Special considerations are made for aces, assigned a value of 11, and face cards
 
 The class provides methods for shuffling the deck (shuffle deck), retrieving a specific card at an index (getCard), and removing a card from the deck at a specified index (removeCard). 
 
-```Game.java```->Game Class: This class calculates the Blackjack game itself. It starts the game, forms the hands, and checks the
-hands for a blackjack or bust. It calculates who wins each round and what happens when a round is over.
+```Game.java```->Game Class: -	The constructor initializes key components of the game, including the deck, dealer's hand, player's hand, and a graphical representation (GameComponent) for the game atmosphere.
+
+The formGame method configures the graphical user interface (GUI) of the game window, adding buttons for "HIT," "STAND," and "EXIT." It also includes event listeners for the "EXIT" button.
+
+The startGame method initiates the game by dealing two cards to both the dealer and the player, updating the GUI accordingly. 
+
+The checkHand method evaluates the current state of a hand (either the player's or dealer's), considering conditions such as achieving a blackjack, busting, or winning based on the hand's total value.
+
+The addCard method adds a card to a specified hand, updating the GUI accordingly.
 
 
 
