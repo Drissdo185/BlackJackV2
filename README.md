@@ -1,80 +1,40 @@
-# BlackJackV2 - OOP Project - IU-VNUHCM
-# Blackjack
+# BLACKJACK GAME WITH GUI
 
-This is a multiplayer Blackjack card game with a server and client. The server acts as the house and creates new tables for players to join through the client. Every player starts with a certain amount of money and must place a minimum bet each round. Players can leave after each round or will be kicked out when they do not have enough money to place the minimum bet. The dealer hits on a soft 17. All other rules are standard Blackjack rules.
+This project was done by Ongun Uzay Macar as a final project for Advanced Programming (high school class) 
+in January 2016 in the guidance of Cengiz Agalar. It is the Java implementation of the popular card game 
+BlackJack supplemented with a graphical user interface.
 
-## How to Play
+## SCREENSHOTS
+![Screenshot]()
+![Screenshot](screenshots/gamedescription.png)
+![Screenshot](screenshots/uninitializedgame.png)
+![Screenshot](screenshots/gameexample1.png)
+![Screenshot](screenshots/gameexample2.png)
 
-Follow these instructions to play Blackjack. It can be played singleplayer by running both the server and client on the same computer, or multiplayer by running the server on one computer and clients on others using the server address option listed below.
+## DIRECTORIES
+```src```: This directory contains all the Java source files (classes) that are detailed below.  
 
-### Prerequisites
+```images```: This directory contains images that will be displayed to the player to enhance gameplay.
 
-* Java SE 9
+```sounds```: This directory contains sounds that will enhance user gameplay and add in a casino ambience.
 
-### Running
+## CLASSES AND DESCRIPTIONS
+```Card.java```->Card Class: This class is for the card itself. The printCard method prints the cards which are stored in a 2D
+array.
 
-To run the server and client, navigate to the directory containing the JAR files and enter the following commands. The server must be started before the client.
+```Deck.java```->Deck Class: With the deck class, we form a deck that consists of 52 cards. There are methods to shuffle, add,
+and remove cards.
 
-```
-java -jar BlackjackServer.jar
+```Game.java```->Game Class: This class calculates the Blackjack game itself. It starts the game, forms the hands, checks the
+hands for a blackjack or bust. It calculates who wins each round and what happens when a round is over.
 
-java -jar BlackjackClient.jar
-```
+```GameComponent.java```->GameComponent Class: This class is for the overall atmosphere of our game. When the user clicks the
+play button in OptionsComponent (menu), this component opens with the poker table, poker chip, and the cards, and all other stuff.
 
-### Options
+```OptionsComponent.java```->OptionsComponent Class: This class is for the menu in our program. In our menu, we have some
+buttons.
 
-Options that can be used when running the server and client are listed below. None of the options are required to run the server or client.
-
-#### Server
-
-**-p** serverPort
-
-* Port to run the server on.
-* Default: 44444
-
-**-t** playersPerTable
-
-* Specifies the number of players per table.
-* Default: 1
-
-**-m** startingMoney
-
-* Specifies the amount of money players start with.
-* Default: 2500
-
-**-b** minimumBet
-
-* Specifies the minimum bet players must place.
-* Default: 500
-
-**-d** numberOfDecks
-
-* Specifies the number of decks in the shoe.
-* Default: 6
-
-**-c** minimumCardsBeforeShuffle
-
-* Specifies the minimum number of cards remaining before shuffling the shoe.
-* Default: 78
-
-#### Client
-
-**-a** serverAddress
-
-* Server IP address to connect to.
-* Default: localhost
-
-**-p** serverPort
-
-* Server port to connect to.
-* Default: 44444
-
-## Screenshots
-
-![Player Turn](screenshots/turn.png)
-
-![Round Outcome](screenshots/outcome.png)
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
+```Tester.java```->Tester Class: The tester class is the main class of our program. It will run when you click run in your IDE
+of choice that runs Java. In the Tester class, there are two threads. One of those threads are for the checking of the game
+which means that the game will refresh as each round finishes and starts again. The other is for the
+refreshing of the JComponent and the display served to the player.
