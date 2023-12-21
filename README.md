@@ -1,4 +1,4 @@
-# BlackJackV2 - OOP Project-International University-VNU-HCM
+![image](https://github.com/Drissdo185/BlackJackV2/assets/145652317/d85502d5-bb86-45d0-804a-de6fbc2aa108)# BlackJackV2 - OOP Project-International University-VNU-HCM
 # Blackjack
 
 This is a client-server multiplayer blackjack card game. Players can join new tables created by the server through the client, which serves as the house. Each player has a starting bankroll and is required to wager a minimum amount each round. After every round, players have the option to leave, or they will be eliminated if they do not have enough money to put the minimum wager. Dealer strikes with a soft 17. Standard Blackjack rules apply to all other regulations.
@@ -38,5 +38,14 @@ If both the player (you) and dealer have the same hand value, it's a push (a tie
 ## BLACKJACK
 
 If the player (you) or dealer is dealt 21 from the start (Ace & a 10-value card), the player/dealer gets a blackjack.
+
+## DIRECTORIES
+
+```src```: All of the Java source files, or classes, listed below are contained in this directory.
+
+
+```images```: The photos in this directory will be shown to the player to improve gameplay.
+
+```sounds```: The sounds in this directory will improve user experience and provide a feeling of a casino.
 
 
