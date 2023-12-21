@@ -35,7 +35,7 @@ If the dealer busts, you win.
 
 If both the player (you) and dealer have the same hand value, it's a push (a tie), and your bet is returned.
 
-##BLACKJACK
+## BLACKJACK
 
 If the player (you) or dealer is dealt 21 from the start (Ace & a 10-value card), the player/dealer gets a blackjack.
 
