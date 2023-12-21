@@ -48,4 +48,18 @@ If the player (you) or dealer is dealt 21 from the start (Ace & a 10-value card)
 
 ```sounds```: The sounds in this directory will improve user experience and provide a feeling of a casino.
 
+### Prerequisites
+
+* Apache NetBeans 19
+
+### Running
+
+Navigate to the directory where the JAR files are located and type the following commands to launch the server and client. Before the client, the server needs to be started.
+
+```
+java -jar BlackjackServer.jar
+
+java -jar BlackjackClient.jar
+```
+
 
