@@ -115,6 +115,14 @@ playSE and stopSE Methods: Utilizes the SE class to play and stop sound effects.
 
 mouseExited, mouseEntered, mouseReleased, mouseClicked Methods: Placeholder methods for the MouseListener interface.
 
+```OptionsComponent.java```->OptionsComponent Class: This class is for the menu in our program. In our menu, we have some
+buttons.
+
+```Tester.java```->Tester Class: The tester class is the main class of our program. It will run when you click run in your IDE
+of choice that runs Java. In the Tester class, there are two threads. One of those threads is for the checking of the game
+which means that the game will refresh as each round finishes and starts again. The other is for the
+refreshing of the JComponent and the display served to the player.
+
 
 
 
