@@ -87,6 +87,36 @@ The checkHand method evaluates the current state of a hand (either the player's 
 
 The addCard method adds a card to a specified hand, updating the GUI accordingly.
 
+```GameComponent.java```->GameComponent Class: The GameComponent class extends JComponent and implements the MouseListener interface in Java Swing, serving as a graphical component for rendering and interacting with the user interface of a card game, likely Blackjack. Fields:
+
+dealerHand and playerHand: ArrayLists representing the dealer's and player's hands, respectively.
+
+dealerScore and playerScore: Integers representing the scores of the dealer and player.
+
+faceDown: A boolean indicating whether the dealer's first card should be face-down.
+
+betMade: A static boolean tracking whether a bet has been made.
+
+currentBalance and currentBet: Integers representing the current balance and bet amount.
+
+se: An instance of the SE class for playing sound effects.
+
+Static BufferedImages for various graphical elements like chips, background, cards, and more.
+
+Constructor: Initializes the dealer's and player's hands and sets initial values for scores and other variables. It also adds a MouseListener to handle mouse events.
+
+paintComponent Method: Overrides the paintComponent method to customize the rendering of graphical elements on the component. Draws background images, cards, scores, and other UI elements.
+
+refresh Method: Updates the component with new values for the current balance, player score, dealer score, and the face-down status. Repaints the component to reflect these changes.
+
+mousePressed Method: Implements the MouseListener interface to handle mouse press events.
+
+playSE and stopSE Methods: Utilizes the SE class to play and stop sound effects. 
+
+mouseExited, mouseEntered, mouseReleased, mouseClicked Methods: Placeholder methods for the MouseListener interface.
+
+
+
 
 
 
