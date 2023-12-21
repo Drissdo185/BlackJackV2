@@ -6,3 +6,10 @@ This is a client-server multiplayer blackjack card game. Players can join new ta
 ## How to Play
 
 Here are the guidelines for playing blackjack. It can be played either way: multiplayer by using the server address option below to run the server on one computer and clients on other computers, or singleplayer by running the server and client on the same machine.
+
+## DIRECTORIES
+```src```: This directory contains all the Java source files (classes) that are detailed below.  
+
+```images```: This directory contains images that will be displayed to the player to enhance gameplay.
+
+```sounds```: This directory contains sounds that will enhance user gameplay and add in a casino ambience.
