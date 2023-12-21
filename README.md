@@ -123,6 +123,18 @@ of choice that runs Java. In the Tester class, there are two threads. One of tho
 which means that the game will refresh as each round finishes and starts again. The other is for the
 refreshing of the JComponent and the display served to the player.
 
+#### Client
+
+**-a** serverAddress
+
+* Server IP address to connect to.
+* Default: localhost
+
+**-p** serverPort
+
+* Server port to connect to.
+* Default: 1234
+
 
 
 
