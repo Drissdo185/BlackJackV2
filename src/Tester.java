@@ -25,9 +25,10 @@ public class Tester {
     private static int playerScore = 0;
     private static int dealerScore = 0;
     public static int currentBalance;
+    private static String PlayerName;
 
 
-    public static Game newGame = new Game(gameFrame);
+    public static Game newGame = new Game(gameFrame, PlayerName);
     private static boolean isFirstTime = true;
 
 
@@ -78,30 +79,17 @@ public class Tester {
         Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Login.setResizable(false);  
         Login.setBackground(Color.BLACK);     
-
-
-
-        JTextField namePlayer = new JTextField();
-        namePlayer.setBounds(280, 200, 200, 30);
-        namePlayer.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-        namePlayer.setHorizontalAlignment(JTextField.CENTER);
         
-
-        JLabel label = new JLabel("Enter your name: ");
-        label.setBounds(100, 200, 200, 30);
-        label.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-        label.setHorizontalAlignment(JLabel.CENTER);
-        label.setForeground(Color.WHITE);
 
 
         JTextField balanceTextField = new JTextField();
-        balanceTextField.setBounds(280, 250, 200, 30);
+        balanceTextField.setBounds(280, 200, 200, 30);
         balanceTextField.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         balanceTextField.setHorizontalAlignment(JTextField.CENTER);        
         
 
         JLabel label2 = new JLabel("Enter your balance: ");
-        label2.setBounds(95, 250, 200, 30);
+        label2.setBounds(95, 200, 200, 30);
         label2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
         label2.setHorizontalAlignment(JLabel.CENTER);
         label2.setForeground(Color.WHITE);
@@ -118,8 +106,7 @@ public class Tester {
 
         Login.add(label2);
         Login.add(balanceTextField);
-        Login.add(label);
-        Login.add(namePlayer);
+        
         Login.add(btnStart);
         Login.setVisible(true);
 
@@ -127,12 +114,13 @@ public class Tester {
 
         
         btnStart.addActionListener(e -> {
-            String name = namePlayer.getText();
+            
             String balance = balanceTextField.getText();
-            if (name.equals("") || balance.equals("")) {
+            if (balance.equals("")) {
                 JOptionPane.showMessageDialog(null, "Please enter your name and balance!");
             } else {
                 currentBalance = Integer.parseInt(balance);
+               
                 Login.setVisible(false);
                 menuFrame.setSize(1130, 665);
                 menuFrame.setLocationRelativeTo(null);
@@ -142,9 +130,9 @@ public class Tester {
                 OptionsComponent beginningComponent = new OptionsComponent();
                 menuFrame.add(beginningComponent);
                 menuFrame.setVisible(true);
+                
             }
-        });}
-        
+        });}        
         
        
     
@@ -152,7 +140,7 @@ public class Tester {
         public void run () {
             while(true){
                 
-                newGame.atmosphereComponent.refresh(currentBalance, playerScore, dealerScore-1, newGame.faceDown);
+                newGame.atmosphereComponent.refresh(currentBalance, playerScore ,dealerScore-1, newGame.faceDown);
 
             }
         }
@@ -163,17 +151,19 @@ public class Tester {
             while(true) {
                 if (isFirstTime||newGame.roundOver) {
                     if (newGame.dealerWon){
+                        
                         dealerScore++; 
                         currentBalance-= GameComponent.currentBet;
                         }
                     else{
+                        
                         playerScore++;
                         currentBalance+= GameComponent.currentBet;
                     }
                 
                 
                 gameFrame.getContentPane().removeAll();
-                newGame = new Game(gameFrame); 
+                newGame = new Game(gameFrame, PlayerName); 
                 newGame.formGame();
 
                 isFirstTime = false;

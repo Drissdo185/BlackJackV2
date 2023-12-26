@@ -34,11 +34,12 @@ public class Game {
     JButton btnStand;
     //JButton btnDouble;
     JButton btnExit;
+    String playerName;
     SE se = new SE();
 
 
 
-    public Game(JFrame f) {
+    public Game(JFrame f, String PlayerName) {
 
         deck = new Deck();
         deck.shuffleDeck();
@@ -57,6 +58,8 @@ public class Game {
 
 
     public void formGame() {
+
+        
 
         frame.setSize(1130, 665);
         frame.setLocationRelativeTo(null);
@@ -168,6 +171,22 @@ public class Game {
                         rest();
                         roundOver = true;
                     }
+                    else if(checkNumberOfCards(dealerHand) == 5 || getSumOfHand(dealerHand) <= 21){
+                        playSE("sounds/losev2.wav");
+                        faceDown = false;
+                        JOptionPane.showMessageDialog(frame, "DEALER HAS WON BECAUSE OF A BETTER HAND!");
+                        rest();
+                        roundOver = true;
+                    }
+                    else if(checkNumberOfCards(playerHand) == 5 || getSumOfHand(playerHand) <= 21){
+                        playSE("sounds/winv2.wav");
+                        faceDown = false;
+                        dealerWon = false;                        
+                        JOptionPane.showMessageDialog(frame, "PLAYER WON DUE TO A BETTER HAND!");
+                        rest();
+                        roundOver = true;
+                    }
+
                     else{
                         playSE("sounds/losev2.wav");
                         faceDown = false;
@@ -178,6 +197,10 @@ public class Game {
                 }
             }
         });
+    }
+
+    public int checkNumberOfCards(ArrayList<Card> hand) {
+        return hand.size();
     }
   
 

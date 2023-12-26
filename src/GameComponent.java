@@ -19,7 +19,7 @@ public class GameComponent extends JComponent implements MouseListener {
     public boolean faceDown = true; 
     public static boolean betMade = false; 
     private int currentBalance; 
-    public static int currentBet; 
+    public static int currentBet;
     SE se = new SE();
 
 
@@ -39,7 +39,8 @@ public class GameComponent extends JComponent implements MouseListener {
 
         dealerScore = 0;
         playerScore = 0;
-
+        
+      
 
         addMouseListener(this);
     }
@@ -77,7 +78,7 @@ public class GameComponent extends JComponent implements MouseListener {
         
 
         g2.drawString("DEALER", 550, 60);
-        g2.drawString("PLAYER", 550, 380);
+        g2.drawString("Player", 550, 380);
 
                 
         g2.setFont(new Font("Arial", Font.BOLD, 23));
@@ -128,6 +129,7 @@ public class GameComponent extends JComponent implements MouseListener {
     public void refresh(int cB, int uS, int dS, boolean fD) {
         currentBalance = cB;
         playerScore = uS;
+        
         dealerScore = dS;
         faceDown = fD;
         this.repaint();
