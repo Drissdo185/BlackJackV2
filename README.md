@@ -52,14 +52,7 @@ If the player (you) or dealer is dealt 21 from the start (Ace & a 10-value card)
 
 * Java 21
 
-### Running
 
-Navigate to the directory where the JAR files are located and type the following commands to launch the server and client. Before the client, the server needs to be started.
-
-```
-java -jar BlackjackServer.jar
-
-java -jar BlackjackClient.jar
 ```
 ### Options
 
