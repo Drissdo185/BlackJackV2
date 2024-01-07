@@ -53,7 +53,7 @@ If the player (you) or dealer is dealt 21 from the start (Ace & a 10-value card)
 * Java 21
 
 
-```
+
 ### Options
 
 The following is a list of options that can be used when running the server and client. To operate the server or client, none of the choices are necessary.
