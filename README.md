@@ -27,9 +27,9 @@ java Tester.java
 
 
 ## Contributing
-Do Thanh Dat - ITDSIU21079 \n
-Nguyen Ba Duy - ITDSIU21014 \n
-Ngo Hoang Thanh - ITDSIU21119 \n
+Do Thanh Dat - ITDSIU21079  
+Nguyen Ba Duy - ITDSIU21014  
+Ngo Hoang Thanh - ITDSIU21119   
 Pham Huynh Thanh Quan - ITDSIU21110
 
 ## License
