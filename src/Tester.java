@@ -125,7 +125,7 @@ public class Tester {
             
             String balance = balanceTextField.getText();
             if (balance.equals("")) {
-                JOptionPane.showMessageDialog(null, "Please make input!");
+                JOptionPane.showMessageDialog(null, "How much money do you want to play ?");
             } else {
                 currentBalance = Integer.parseInt(balance);
                
@@ -163,6 +163,10 @@ public class Tester {
                         dealerScore++; 
                         currentBalance-= GameComponent.currentBet;
                         }
+                    else if(newGame.tie){
+                        currentBalance = currentBalance;
+
+                    }
                     else{
                         
                         playerScore++;

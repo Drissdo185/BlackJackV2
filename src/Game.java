@@ -1,13 +1,6 @@
 import java.util.ArrayList;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.Font;
 
@@ -21,6 +14,7 @@ public class Game {
 
     public boolean faceDown;
     public boolean dealerWon;
+    public boolean tie;
     public volatile boolean roundOver;
 
 
@@ -191,7 +185,7 @@ public class Game {
                             } else if (getSumOfHand(playerHand) == getSumOfHand(dealerHand)) {
                                 playSE("sounds/winv2.wav");
                                 faceDown = false;
-                                dealerWon = false;
+                                tie = true;
                                 JOptionPane.showMessageDialog(frame, "No one loses");
                                 rest();
                                 roundOver = true;
