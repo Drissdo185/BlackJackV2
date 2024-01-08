@@ -136,6 +136,8 @@ public class GameComponent extends JComponent implements MouseListener {
     }
 
 
+    
+
 
     public void mousePressed(MouseEvent e) {
         int mouseX = e.getX();

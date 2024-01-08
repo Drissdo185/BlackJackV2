@@ -9,25 +9,25 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.*;
 
+import java.awt.*;
 
 
 public class Tester {
+
+    private static Tester instance = null;
     JButton btnStart;
-    private static JTextField namePlayer;
+    
     public static JFrame Login = new JFrame();
     public static JFrame menuFrame = new JFrame();
     public static JFrame gameFrame = new JFrame();
     public static ImageIcon icon = new ImageIcon("images/icon.png");
 
-    //private static BufferedImage backgroundImage;
-
     private static int playerScore = 0;
     private static int dealerScore = 0;
     public static int currentBalance;
     private static String PlayerName;
-
-
     public static Game newGame = new Game(gameFrame, PlayerName);
     private static boolean isFirstTime = true;
 
@@ -42,11 +42,19 @@ public class Tester {
 
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static Tester getInstance() {
+        if (instance == null) {
+            instance = new Tester();
+        }
+        return instance;
+    }
+    
 
-        if(currentState == STATE.MENU) {
-            setCommonProperties();
-            openMenu();
+    public static void main(String[] args) throws InterruptedException {
+    Tester tester = Tester.getInstance();
+        if(tester.currentState == STATE.MENU) {
+            tester.setCommonProperties();
+            tester.openMenu();
         }    
     }
 
@@ -117,7 +125,7 @@ public class Tester {
             
             String balance = balanceTextField.getText();
             if (balance.equals("")) {
-                JOptionPane.showMessageDialog(null, "Please enter your name and balance!");
+                JOptionPane.showMessageDialog(null, "Please make input!");
             } else {
                 currentBalance = Integer.parseInt(balance);
                
