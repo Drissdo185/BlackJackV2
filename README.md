@@ -50,17 +50,10 @@ If the player (you) or dealer is dealt 21 from the start (Ace & a 10-value card)
 
 ### Prerequisites
 
-* Apache NetBeans 19
+* Java 21
 
-### Running
 
-Navigate to the directory where the JAR files are located and type the following commands to launch the server and client. Before the client, the server needs to be started.
 
-```
-java -jar BlackjackServer.jar
-
-java -jar BlackjackClient.jar
-```
 ### Options
 
 The following is a list of options that can be used when running the server and client. To operate the server or client, none of the choices are necessary.
@@ -123,17 +116,7 @@ of choice that runs Java. In the Tester class, there are two threads. One of tho
 which means that the game will refresh as each round finishes and starts again. The other is for the
 refreshing of the JComponent and the display served to the player.
 
-#### Client
 
-**-a** serverAddress
-
-* Server IP address to connect to.
-* Default: localhost
-
-**-p** serverPort
-
-* Server port to connect to.
-* Default: 1234
 
 
 
