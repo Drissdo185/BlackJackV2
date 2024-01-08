@@ -19,7 +19,7 @@ cd BlackJackV2
 ```
 3. Run game
 ```shell
-java Tester
+java Tester.java
 ```
 
 ## Usage
