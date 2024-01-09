@@ -5,6 +5,13 @@ This project is an Object-Oriented Programming (OOP) implementation of the class
 
 The game simulates the interaction between a player and a computer dealer, following standard Blackjack rules. It is designed to demonstrate OOP principles such as encapsulation, inheritance, and polymorphism.
 
+## Concepts
+* Abstraction   
+* Encapsulation  
+* Inheritance  
+* Polymorphism  
+* Design Patterns: Singleton
+
 ## Installation
 
 To install and run the project, follow these steps:
