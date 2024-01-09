@@ -41,7 +41,7 @@ Click the coin to make bet.
 
 Select the amount you want and enjoy the game !!!
 
-![Image Alt Text](images/img_4png)
+![Image Alt Text](images/img_4.png)
 
 
 
