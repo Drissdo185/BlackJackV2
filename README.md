@@ -25,9 +25,11 @@ git clone https://github.com/Drissdo185/BlackJackV2.git
 cd BlackJackV2
 ```
 3. Run game
+Open it in Visual Code 
 ```shell
-java Tester.java
+code .
 ```
+Or open manually in Intellij
 
 ## Overview
 Firstly, you have to enter the amount you want to play
