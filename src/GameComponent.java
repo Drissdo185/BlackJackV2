@@ -46,7 +46,7 @@ public class GameComponent extends JComponent implements MouseListener {
     }
 
 
-
+    @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
@@ -138,7 +138,7 @@ public class GameComponent extends JComponent implements MouseListener {
 
     
 
-
+    @Override
     public void mousePressed(MouseEvent e) {
         int mouseX = e.getX();
         int mouseY = e.getY();

@@ -154,7 +154,8 @@ public class Tester {
         }
     };
 
-    public static Thread gameCheckThread = new Thread () {
+    public static Thread gameCheckThread = new Thread () { // Thread implement Runnable interface
+        @Override
         public void run () {
             while(true) {
                 if (isFirstTime||newGame.roundOver) {
