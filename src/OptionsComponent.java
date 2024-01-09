@@ -77,7 +77,7 @@ public class OptionsComponent extends JComponent implements MouseListener{
 
         //play button
         else if(mouseX>= 600 && mouseX<=760 && mouseY>=400 && mouseY<=470) {
-            playSE("sounds/bg.wav");
+            playSE("sounds/Wallpaper(chosic.com).wav");
             
             Tester.currentState = Tester.STATE.GAME;
             Tester.menuFrame.dispose();

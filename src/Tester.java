@@ -158,11 +158,11 @@ public class Tester {
         public void run () {
             while(true) {
                 if (isFirstTime||newGame.roundOver) {
-                    if (newGame.tie){
-                        
-                        currentBalance +=0;
-                        }
-                    if(newGame.dealerWon){
+
+                    if(newGame.tie){
+                        currentBalance+= 0;
+                    }
+                    else if(newGame.dealerWon == true){
                         
                         dealerScore++;
                         currentBalance-= GameComponent.currentBet;
