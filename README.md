@@ -22,7 +22,29 @@ cd BlackJackV2
 java Tester.java
 ```
 
-## Usage
+## Overview
+Firstly, you have to enter the amount you want to play
+![Image Alt Text](images/img.png)
+  
+GUI gameplay
+
+![Image Alt Text](images/img_1.png)
+
+Select HELP if you don't know the rules
+
+If you feel ok, click Play button to strat game.
+![Image Alt Text](images/img_2.png)
+
+Click the coin to make bet. 
+
+![Image Alt Text](images/img_3.png)
+
+Select the amount you want and enjoy the game !!!
+
+![Image Alt Text](images/img_4.png)
+
+
+
 
 
 
