@@ -12,6 +12,9 @@ The game simulates the interaction between a player and a computer dealer, follo
 * Polymorphism  
 * Design Patterns: Singleton
 
+## UML Diagram
+![Image Alt Text](images/img_5.png)
+
 ## Installation
 
 To install and run the project, follow these steps:

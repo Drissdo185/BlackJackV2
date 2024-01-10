@@ -62,13 +62,13 @@ public class Tester {
 
     public static void setCommonProperties() {
         Login.setIconImage(icon.getImage());
-        Login.setTitle("xì dách phương Tây");
+        Login.setTitle("BlackJack(Xi Dach)");
 
         menuFrame.setIconImage(icon.getImage());
-        menuFrame.setTitle("xì dách phương Tây");
+        menuFrame.setTitle("BlackJack(Xi Dach)");
 
         gameFrame.setIconImage(icon.getImage());
-        gameFrame.setTitle("xì dách phương tây");
+        gameFrame.setTitle("BlackJack(Xi Dach)");
     }
     
     
