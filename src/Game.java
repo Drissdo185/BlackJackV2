@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.*;
 
@@ -125,13 +126,13 @@ public class Game {
 
 
         btnHit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)  {
-                playSE("sounds/rutbai.wav");
-                addCard(playerHand);
-                checkFiveCardP(playerHand);
-                checkFiveCardLP(playerHand);
-            }
-        }
+                                     public void actionPerformed(ActionEvent e)  {
+                                         playSE("sounds/rutbai.wav");
+                                         addCard(playerHand);
+                                         checkFiveCardP(playerHand);
+                                         checkFiveCardLP(playerHand);
+                                     }
+                                 }
         );
 
 
@@ -141,59 +142,65 @@ public class Game {
                     while(getSumOfHand(dealerHand)<= 14){
                         addCard(dealerHand);
                     }
-                    checkFiveCardD(dealerHand);
-                    if(getSumOfHand(playerHand)>21 && getSumOfHand(dealerHand)>21){
+                    if(checkFiveCardD(dealerHand)){
                         playSE("sounds/winv2.wav");
                         faceDown = false;
-                        tie = true;
-                        JOptionPane.showMessageDialog(frame, "WELL DONE, NO ONES LOSES");
-                        rest();
-                        roundOver = true;
-                    } else if (getSumOfHand(playerHand) == getSumOfHand(dealerHand)) {
-                        faceDown=false;
-                        tie = true;
-                        JOptionPane.showMessageDialog(frame, "WELL DONE, NO ONES LOSES");
-                        rest();
-                        roundOver = true;
-
-                    } else if (getSumOfHand(playerHand)>21 && getSumOfHand(dealerHand)< 21) {
-                        faceDown = false;
                         dealerWon = true;
-                        JOptionPane.showMessageDialog(frame, "DEALER HAS WON");
-                        rest();
-                        roundOver = true;
-                    } else if (getSumOfHand(dealerHand)>21 && getSumOfHand(playerHand)< 21) {
-                        faceDown = false;
-                        dealerWon = false;
-                        JOptionPane.showMessageDialog(frame, "PLAYER HAS WON");
+                        JOptionPane.showMessageDialog(frame, "DEALER HAS GOT FIVE CARD TRICK! DEALER HAS WON!");
                         rest();
                         roundOver = true;
                     }
+                    else{
 
-                    else if (getSumOfHand(playerHand) < getSumOfHand(dealerHand)) {
-                        faceDown = false;
-                        dealerWon = true;
-                        JOptionPane.showMessageDialog(frame, "DEALER HAS WON");
-                        rest();
-                        roundOver = true;
 
-                    }
-                    else {
-                        playSE("sounds/winv2.wav");
-                        faceDown = false;
-                        dealerWon = false;
-                        JOptionPane.showMessageDialog(frame, "PLAYER HAS WON!");
-                        rest();
-                        roundOver = true;
+                        if(getSumOfHand(playerHand)>21 && getSumOfHand(dealerHand)>21){
+                            playSE("sounds/winv2.wav");
+                            faceDown = false;
+                            tie = true;
+                            JOptionPane.showMessageDialog(frame, "WELL DONE, NO ONES LOSES");
+                            rest();
+                            roundOver = true;
+                        } else if (getSumOfHand(playerHand) == getSumOfHand(dealerHand)) {
+                            faceDown=false;
+                            tie = true;
+                            JOptionPane.showMessageDialog(frame, "WELL DONE, NO ONES LOSES");
+                            rest();
+                            roundOver = true;
 
-                    }
-                }
+                        } else if (getSumOfHand(playerHand)>21 && getSumOfHand(dealerHand)<= 21) {
+                            faceDown = false;
+                            dealerWon = true;
+                            JOptionPane.showMessageDialog(frame, "DEALER HAS WON, PLAYER HAS BUSTED");
+                            rest();
+                            roundOver = true;
+                        } else if (getSumOfHand(dealerHand)>21 && getSumOfHand(playerHand)<= 21) {
+                            faceDown = false;
+                            dealerWon = false;
+                            JOptionPane.showMessageDialog(frame, "PLAYER HAS WON, DEALER HAS BUSTED");
+                            rest();
+                            roundOver = true;
+                        }
+                        else if (getSumOfHand(playerHand) < getSumOfHand(dealerHand)) {
+                            faceDown = false;
+                            dealerWon = true;
+                            JOptionPane.showMessageDialog(frame, "DEALER HAS WON");
+                            rest();
+                            roundOver = true;
+
+                        }
+                        else {
+                            playSE("sounds/winv2.wav");
+                            faceDown = false;
+                            dealerWon = false;
+                            JOptionPane.showMessageDialog(frame, "PLAYER HAS WON!");
+                            rest();
+                            roundOver = true;
+
+                        }
+                    }}
                 else{
                     JOptionPane.showMessageDialog(frame, "YOU CAN'T STAND, YOUR POINT LESS THAN 14");
                 }
-
-
-
 
             }
         });
@@ -211,7 +218,7 @@ public class Game {
         deck.removeCard(0);
         faceDown = true;
     }
-// check xi zach
+    // check xi zach
     public void checkBJ(ArrayList<Card> hand){
         if(hand.equals(dealerHand)){
             if(getSumOfHand(dealerHand) ==21){
@@ -238,28 +245,24 @@ public class Game {
 
 
     //check ngu linh
-    public void checkFiveCardD(ArrayList<Card> hand){
+    public boolean checkFiveCardD(ArrayList<Card> hand){
 
-            if(getSumOfHand(dealerHand) <=21 && checkNumberOfCards(hand)== 5){
-                playSE("sounds/winv2.wav");
-                faceDown = false;
-                dealerWon = true;
-                JOptionPane.showMessageDialog(frame, "DEALER HAS GOT FIVE CARD TRICK! DEALER HAS WON!");
-                rest();
-                roundOver = true;
+        if(getSumOfHand(dealerHand) <=21 && checkNumberOfCards(hand)== 5){
 
-            }
-
+            return true;
         }
+        return false;
+
+    }
     public void checkFiveCardP(ArrayList<Card> hand){
-            if(getSumOfHand(playerHand) <=21 && checkNumberOfCards(hand)== 5) {
-                playSE("sounds/winv2.wav");
-                faceDown = false;
-                dealerWon = true;
-                JOptionPane.showMessageDialog(frame, "PLAYER HAS GOT FIVE CARD TRICK! PLAYER HAS WON!");
-                rest();
-                roundOver = true;
-            }
+        if(getSumOfHand(playerHand) <=21 && checkNumberOfCards(hand)== 5) {
+            playSE("sounds/winv2.wav");
+            faceDown = false;
+            dealerWon = false;
+            JOptionPane.showMessageDialog(frame, "PLAYER HAS GOT FIVE CARD TRICK! PLAYER HAS WON!");
+            rest();
+            roundOver = true;
+        }
 
     }
 
@@ -268,7 +271,7 @@ public class Game {
             playSE("sounds/winv2.wav");
             faceDown = false;
             dealerWon = true;
-            JOptionPane.showMessageDialog(frame, "PLAYER HAS GOT FIVE CARD TRICK! PLAYER HAS WON!");
+            JOptionPane.showMessageDialog(frame, "PLAYER HAS LOST");
             rest();
             roundOver = true;
         }

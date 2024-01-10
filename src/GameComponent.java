@@ -12,13 +12,13 @@ import java.io.*;
 
 public class GameComponent extends JComponent implements MouseListener {
 
-    private ArrayList<Card> dealerHand; 
+    private ArrayList<Card> dealerHand;
     private ArrayList<Card> playerHand;
-    private int dealerScore; 
+    private int dealerScore;
     private int playerScore;
-    public boolean faceDown = true; 
-    public static boolean betMade = false; 
-    private int currentBalance; 
+    public boolean faceDown = true;
+    public static boolean betMade = false;
+    private int currentBalance;
     public static int currentBet;
     SE se = new SE();
 
@@ -28,19 +28,19 @@ public class GameComponent extends JComponent implements MouseListener {
     private static BufferedImage board;
     private static BufferedImage backsideOfACard;
     private static BufferedImage box;
-    
 
 
 
-    public GameComponent(ArrayList<Card> dH, ArrayList<Card> pH) { 
 
-        dealerHand = dH; 
+    public GameComponent(ArrayList<Card> dH, ArrayList<Card> pH) {
+
+        dealerHand = dH;
         playerHand = pH;
 
         dealerScore = 0;
         playerScore = 0;
-        
-      
+
+
 
         addMouseListener(this);
     }
@@ -59,7 +59,7 @@ public class GameComponent extends JComponent implements MouseListener {
             box = ImageIO.read(new File("images/box.png"));
         }
         catch(IOException e) {}
-        
+
 
 
         g2.drawImage(backgroundImage, 0, 0, null);
@@ -75,12 +75,12 @@ public class GameComponent extends JComponent implements MouseListener {
 
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
-        
+
 
         g2.drawString("DEALER", 550, 60);
         g2.drawString("PLAYER", 550, 380);
 
-                
+
         g2.setFont(new Font("Arial", Font.BOLD, 23));
         g2.drawString("BALANCE: " + currentBalance, 20, 27);
 
@@ -101,13 +101,13 @@ public class GameComponent extends JComponent implements MouseListener {
         try {
             for (int i = 0; i < dealerHand.size(); i++) {
 
-                    if(faceDown) {
-                        dealerHand.get(i).printCard(g2, true, true, i); // true la úp bài false la mo bai
-                    }
-                    else {
-                        dealerHand.get(i).printCard(g2, true, false , i);
-                    }
+                if(faceDown) {
+                    dealerHand.get(i).printCard(g2, true, true, i); // true la úp bài false la mo bai
                 }
+                else {
+                    dealerHand.get(i).printCard(g2, true, false , i);
+                }
+            }
 
 
         }
@@ -127,14 +127,14 @@ public class GameComponent extends JComponent implements MouseListener {
     public void refresh(int cB, int uS, int dS, boolean fD) {
         currentBalance = cB;
         playerScore = uS;
-        
+
         dealerScore = dS;
         faceDown = fD;
         this.repaint();
     }
 
 
-    
+
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -143,14 +143,14 @@ public class GameComponent extends JComponent implements MouseListener {
 
 
         if(currentBalance == 0) {
-                JOptionPane.showMessageDialog(null, "You don't have money to play. Please get more money to continue playing.");
-                return; 
-            }
+            JOptionPane.showMessageDialog(null, "You don't have money to play. Please get more money to continue playing.");
+            return;
+        }
 
 
         if(mouseX>= 50 && mouseX<=250 && mouseY>=320 && mouseY<=550) {
             playSE("sounds/chips.wav");
-            
+
             betMade = true;
             String[] options = new String[] {"1", "5", "10", "25", "100", "All In"};
             int response = JOptionPane.showOptionDialog(null, "Please choose your betting amount", "BETTING",
@@ -172,7 +172,7 @@ public class GameComponent extends JComponent implements MouseListener {
             else if(response == 4) {
                 betAmount = 100;
             }
-            else if(response == 5) { 
+            else if(response == 5) {
                 betAmount = currentBalance;
             }
             playSE("sounds/rutbai.wav");
@@ -186,21 +186,21 @@ public class GameComponent extends JComponent implements MouseListener {
             currentBet = betAmount;
             currentBalance -= betAmount;
 
-        
+
 
             Tester.newGame.startGame();
         }
-        
+
     }
-     //Play the sound effect  
+    //Play the sound effect
     private void playSE(String Sound) {
-        
+
         se.setFile(Sound);
-        se.play();	
+        se.play();
     }
     //Stop the music
     public void stopSE() {
-        
+
         se.stop();
     }
     public void mouseExited(MouseEvent e) {

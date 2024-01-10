@@ -108,8 +108,11 @@ public class OptionsComponent extends JComponent implements MouseListener{
 
         //about us button
         else if(mouseX>= 350 && mouseX<=550 && mouseY>=395 && mouseY<=465) {
-            JOptionPane.showMessageDialog(this, "Product of Driss dep trai va nhung nguoi ban" +
-                    "\n:>>>>>>>>", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "BlackJack (Xi Dach) - OOP Project-International University-VNU-HCM" +
+                    "\nDo Thanh Dat - ITDSIU21079  \n" +
+                    "Nguyen Ba Duy - ITDSIU21014  \n" +
+                    "Ngo Hoang Thanh - ITDSIU21119   \n" +
+                    "Pham Huynh Thanh Quan - ITDSIU21110", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
         }
 
 
