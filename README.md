@@ -1,4 +1,4 @@
-# BlackJack - OOP Project-International University-VNU-HCM
+# BlackJack (Xi Dach) - OOP Project-International University-VNU-HCM
 
 ## Description
 This project is an Object-Oriented Programming (OOP) implementation of the classic card game Blackjack. It is developed as part of a course at the International University - VNU-HCM.
@@ -25,9 +25,11 @@ git clone https://github.com/Drissdo185/BlackJackV2.git
 cd BlackJackV2
 ```
 3. Run game
+Open it in Visual Code 
 ```shell
-java Tester.java
+code .
 ```
+Or open manually in Intellij
 
 ## Overview
 Firstly, you have to enter the amount you want to play
