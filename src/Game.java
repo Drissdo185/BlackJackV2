@@ -268,7 +268,7 @@ public class Game {
             playSE("sounds/winv2.wav");
             faceDown = false;
             dealerWon = true;
-            JOptionPane.showMessageDialog(frame, "PLAYER HAS GOT FIVE CARD TRICK! PLAYER HAS WON!");
+            JOptionPane.showMessageDialog(frame, "PLAYER HAS LOSE!");
             rest();
             roundOver = true;
         }
