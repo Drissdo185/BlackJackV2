@@ -78,7 +78,7 @@ public class GameComponent extends JComponent implements MouseListener {
         
 
         g2.drawString("DEALER", 550, 60);
-        g2.drawString("Player", 550, 380);
+        g2.drawString("PLAYER", 550, 380);
 
                 
         g2.setFont(new Font("Arial", Font.BOLD, 23));
@@ -100,18 +100,16 @@ public class GameComponent extends JComponent implements MouseListener {
 
         try {
             for (int i = 0; i < dealerHand.size(); i++) {
-                if (i == 0) { 
-                    if(faceDown) { 
-                        dealerHand.get(i).printCard(g2, true, true, i);
+
+                    if(faceDown) {
+                        dealerHand.get(i).printCard(g2, true, true, i); // true la úp bài false la mo bai
                     }
                     else {
-                        dealerHand.get(i).printCard(g2, true, false, i);
+                        dealerHand.get(i).printCard(g2, true, false , i);
                     }
                 }
-                else {
-                    dealerHand.get(i).printCard(g2, true, false, i);
-                }
-            }
+
+
         }
         catch (IOException e) {}
 
