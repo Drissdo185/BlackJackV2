@@ -1,4 +1,4 @@
-# BlackJack - OOP Project-International University-VNU-HCM
+# BlackJack (Xi Dach) - OOP Project-International University-VNU-HCM
 
 ## Description
 This project is an Object-Oriented Programming (OOP) implementation of the classic card game Blackjack. It is developed as part of a course at the International University - VNU-HCM.
