@@ -92,14 +92,14 @@ public class OptionsComponent extends JComponent implements MouseListener{
                             "\n2. CARD VALUES:" +
                             "\n   - Face cards (King, Queen, Jack) are each worth 10 points." + 
                             "\n   - Aces can be worth either 1 or 11 points, depending on which value benefits the hand more." +
-                            "\n3. THE DEAL: You are dealt two cards each, and the dealer receives one card face up and one face down (hole card)." +
+                            "\n3. THE DEAL: You are dealt two cards each, and the dealer receives 2 cards down (hole card)." +
                             "\n4. TURN:" +
-                            "\n   - You can choose to \"hit\" (take another card) or \"stand\" (keep your current hand)." +
+                            "\n   - You can choose to \"hit\" if you do not have enough 14 points (take another card) or \"stand\" (keep your current hand)." +
                             "\n   - You can continue to hit until you decide to stand, or until your hand exceeds 21, resulting in a bust." +
                             "\n5. WINNING & LOSING:" +
-                            "\n   - You win if your hand is closer to 21 than the dealer's hand without busting." +
-                            "\n   - If you bust (exceeds 21), the dealer wins regardless of the dealer's hand." +
-                            "\n   - If the dealer busts, you win." +
+                            "\n   - You win if your hand is under 21 points and greater than dealer's hand" +
+                            "\n   - If you bust (exceeds 21), the dealer is under 21 points. Dealer will win game." +
+                            "\n   - If the dealer busts, you win (if you do not over 21 points)." +
                             "\n   - If both the player (you) and dealer have the same hand value, it's a push (a tie), and your bet is returned." +
                             "\n6. BLACKJACK: If the player (you) or dealer is dealt 21 from the start (Ace & a 10-value card), player/dealer got a blackjack" , "BLACKJACK'S BASIC GAMEPLAY",
                     JOptionPane.INFORMATION_MESSAGE);                    
