@@ -52,9 +52,9 @@ public class Tester {
 
     public static void main(String[] args) throws InterruptedException {
     Tester tester = Tester.getInstance();
-        if(tester.currentState == STATE.MENU) {
-            tester.setCommonProperties();
-            tester.openMenu();
+        if(Tester.currentState == STATE.MENU) {
+            Tester.setCommonProperties();
+            Tester.openMenu();
         }    
     }
 

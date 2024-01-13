@@ -4,6 +4,8 @@
 This project is an Object-Oriented Programming (OOP) implementation of the classic card game Blackjack. It is developed as part of a course at the International University - VNU-HCM.
 
 The game simulates the interaction between a player and a computer dealer, following standard Blackjack rules. It is designed to demonstrate OOP principles such as encapsulation, inheritance, and polymorphism.
+ 
+[Report](Report-oop.pdf)
 
 ## Concepts
 * Abstraction   
